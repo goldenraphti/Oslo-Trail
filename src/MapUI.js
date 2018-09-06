@@ -18,6 +18,18 @@ export default class MapUI extends Component {
         lng: 10.752245,
         zoom: 10,
       },
+      routes: {
+          route1 : {
+              name: 'Tour of Mellomkollen',
+              start: 'Skar',
+              startLat: 60.026707,
+              startLong: 10.779335,
+              end: 'Skar',
+              distance: 6.5,
+              climb: 350,
+              type: 'loop'
+          }
+      }
       
   }
 
@@ -37,9 +49,9 @@ export default class MapUI extends Component {
           attribution={layers.attribution}
           url={layers.landscape}
         />
-        <Marker position={position}>
+        <Marker position={[this.state.routes.route1.startLat,this.state.routes.route1.startLong]}>
           <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+              {this.state.routes.route1.name}<br /> {this.state.routes.route1.distance}km | {this.state.routes.route1.climb} m+
           </Popup>
         </Marker>
       </Map>
