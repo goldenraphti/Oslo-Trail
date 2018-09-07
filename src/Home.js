@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import './App.css'
 import Navbar from './Navbar'
 import DescriptionHome from './DescriptionHome'
+import Footer from './Footer'
 
 class Home extends Component {
     
@@ -40,6 +41,8 @@ class Home extends Component {
                    <h1>Oslo Trail</h1>
                    <DescriptionHome />
                </div>
+               
+               <Footer />
                 
             </div>
 

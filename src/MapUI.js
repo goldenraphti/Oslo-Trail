@@ -15,6 +15,7 @@ import { Map,
     GeoJSON} from 'react-leaflet'
 import Leaflet from 'leaflet'
 import { Polyline as LeafletPolyline } from 'leaflet'
+// in the markers use "iconStart" for the start marker icon, and "iconFinish" for the finish marker icon
 import {  iconStart, iconFinish  } from './Icons';
 
 

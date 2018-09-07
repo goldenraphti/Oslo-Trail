@@ -5,6 +5,7 @@ import './App.css'
 import Navbar from './Navbar'
 import L from 'leaflet';
 import MapUI from './MapUI';
+import Footer from './Footer'
 import {
     FeatureGroup,
     Circle,
@@ -48,6 +49,8 @@ class Catalog extends Component {
                     routeGrefsenkollen = {routeGrefsenkollen.features[0]}
                     routeWyllerløypa = {routeGrefsenkollen.features[1]}
                   />
+                  
+                  <Footer />
                 
             </div>
         );
