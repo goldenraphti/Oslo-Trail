@@ -160,6 +160,13 @@ nav a {
 
 #home-container .content li {
     padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+#home-container .content li img {
+    width: 40px;
+    margin-right: 20px;
 }
 
 #catalog-container {
