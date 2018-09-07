@@ -15,6 +15,7 @@ import { Map,
     GeoJSON} from 'react-leaflet'
 import Leaflet from 'leaflet'
 import { Polyline as LeafletPolyline } from 'leaflet'
+import {  iconPerson  } from './Icons';
 
 
 
@@ -79,6 +80,15 @@ componentDidMount() {
         },
     }
      
+    const iconStart = {
+        iconUrl: require('./images/map-pin.png'),
+        iconSize: [40, 40],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -76],
+        shadowUrl: require('./images/marker-shadow.png'),
+        shadowSize: [68, 95],
+        shadowAnchor: [22, 94]
+    };
     
     return (
       <Map center={position} zoom={this.state.initialView.zoom} id="map-container">
@@ -117,7 +127,9 @@ componentDidMount() {
             <Marker position={[this.state.routes.route1.startLat,this.state.routes.route1.startLong]} 
                  title= 'Tour of Mellomkollen'
                   color="var(--palette-1-3)"
-                  fillColor="var(--palette-1-3)" >
+                  fillColor="var(--palette-1-3)"
+                    icon={ iconPerson }
+              >
               <Popup>
                   {this.state.routes.route1.name}<br /> {this.state.routes.route1.distance}km | {this.state.routes.route1.climb} m+
               </Popup>
