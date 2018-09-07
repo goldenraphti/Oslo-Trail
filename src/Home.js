@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import ReactDOM from 'react-dom'
 import './App.css'
 import Navbar from './Navbar'
+import DescriptionHome from './DescriptionHome'
 
 class Home extends Component {
     
@@ -34,7 +35,11 @@ class Home extends Component {
         return (
             <div id="home-container">
                <Navbar />
-               <h1>Oslo Trail</h1>
+               
+               <div class="content">
+                   <h1>Oslo Trail</h1>
+                   <DescriptionHome />
+               </div>
                 
             </div>
 

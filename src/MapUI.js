@@ -102,30 +102,27 @@ componentDidMount() {
             />
           </BaseLayer>
           
-            <GeoJSON key='geojson-1' data={this.props.route1test} />
-            <GeoJSON key='geojson-2' data={this.props.routeGrefsenkollen} />
-            <GeoJSON key='geojson-3' data={this.props.routeWyllerløypa} />
+            <GeoJSON key='geojson-1' data={this.props.route1test} 
+                  color="var(--palette-1-3)"
+                  fillColor="var(--palette-1-3)" />
+            <GeoJSON key='geojson-2' data={this.props.routeGrefsenkollen} 
+                  color="var(--palette-1-3)"
+                  fillColor="var(--palette-1-3)"/>
+            <GeoJSON key='geojson-3' data={this.props.routeWyllerløypa}
+                  color="var(--palette-1-3)"
+                  fillColor="var(--palette-1-3)" />
           
           <Overlay checked name="Marker with popup">
            
-            <Marker position={[this.state.routes.route1.startLat,this.state.routes.route1.startLong]}>
+            <Marker position={[this.state.routes.route1.startLat,this.state.routes.route1.startLong]} 
+                 title= 'Tour of Mellomkollen'
+                  color="var(--palette-1-3)"
+                  fillColor="var(--palette-1-3)" >
               <Popup>
                   {this.state.routes.route1.name}<br /> {this.state.routes.route1.distance}km | {this.state.routes.route1.climb} m+
               </Popup>
             </Marker>
 
-          </Overlay>
-          
-          <Overlay checked name="Circles and routes">
-           
-            <LayerGroup>
-                <Circle
-                  center={[59.913868, 10.752245]}
-                  color="green"
-                  fillColor="green"
-                  radius={2000}
-                />
-            </LayerGroup>
           </Overlay>
 
           
