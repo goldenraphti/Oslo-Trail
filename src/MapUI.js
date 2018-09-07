@@ -4,20 +4,27 @@ import ReactDOM from 'react-dom'
 import L from 'leaflet';
 import { Map,
     Circle,
+    Polyline,
     FeatureGroup,
     LayerGroup,
     LayersControl,
     Marker,
     Popup,
     Rectangle,
-    TileLayer } from 'react-leaflet'
+    TileLayer,
+    GeoJSON} from 'react-leaflet'
 import Leaflet from 'leaflet'
+import { Polyline as LeafletPolyline } from 'leaflet'
+
+
 
 const { BaseLayer, Overlay } = LayersControl
 
 // not sure if useful so far
 Leaflet.Icon.Default.imagePath =
 '//cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/images/'
+
+
 
 
 
@@ -37,18 +44,23 @@ export default class MapUI extends Component {
               end: 'Skar',
               distance: 6.5,
               climb: 350,
-              type: 'loop'
+              type: 'loop',
+              routePolyline: [],
           }
-      }
+      },
       
   }
+
+
+componentDidMount() {
+}
+
+
+
 
   render() {
       
     const position = [this.state.initialView.lat, this.state.initialView.lng]
-    
-    const center = [60.026707, 10.779335]
-    
     const layers = {
         landscape: {
             nameTile: 'landscape',
@@ -60,8 +72,13 @@ export default class MapUI extends Component {
             url: 'https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=dcc7bcce19df4c7e9537813bd66c45b5',
             attribution : "Maps <a href=&quot;http://www.thunderforest.com/&quot;>Thunderforest</a>, Data <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         },
-        
+        transport: {
+            nameTile: 'transport',
+            url: 'https://tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=dcc7bcce19df4c7e9537813bd66c45b5',
+            attribution : "Maps <a href=&quot;http://www.thunderforest.com/&quot;>Thunderforest</a>, Data <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+        },
     }
+     
     
     return (
       <Map center={position} zoom={this.state.initialView.zoom} id="map-container">
@@ -72,55 +89,47 @@ export default class MapUI extends Component {
               url={layers.landscape.url}
             />
           </BaseLayer>
-          <BaseLayer checked name={layers.outdoors.nameTile}>
+          <BaseLayer name={layers.outdoors.nameTile}>
             <TileLayer
               attribution={layers.outdoors.attribution}
               url={layers.outdoors.url}
             />
           </BaseLayer>
-          <Overlay name="Marker with popup">
-            <Marker position={center}>
+          <BaseLayer name={layers.transport.nameTile}>
+            <TileLayer
+              attribution={layers.transport.attribution}
+              url={layers.transport.url}
+            />
+          </BaseLayer>
+          
+            <GeoJSON key='geojson-1' data={this.props.route1test} />
+            <GeoJSON key='geojson-2' data={this.props.routeGrefsenkollen} />
+            <GeoJSON key='geojson-3' data={this.props.routeWyllerløypa} />
+          
+          <Overlay checked name="Marker with popup">
+           
+            <Marker position={[this.state.routes.route1.startLat,this.state.routes.route1.startLong]}>
               <Popup>
-                <span>
-                  A pretty CSS3 popup. <br /> Easily customizable.
-                </span>
+                  {this.state.routes.route1.name}<br /> {this.state.routes.route1.distance}km | {this.state.routes.route1.climb} m+
               </Popup>
             </Marker>
+
           </Overlay>
-          <Overlay checked name="Layer group with circles">
+          
+          <Overlay checked name="Circles and routes">
+           
             <LayerGroup>
-              <Circle center={center} fillColor="blue" radius={200} />
-              <Circle
-                center={center}
-                fillColor="red"
-                radius={100}
-                stroke={false}
-              />
-              <LayerGroup>
                 <Circle
                   center={[59.913868, 10.752245]}
                   color="green"
                   fillColor="green"
                   radius={2000}
                 />
-              </LayerGroup>
             </LayerGroup>
           </Overlay>
-          <Overlay name="Feature group">
-            <FeatureGroup color="purple">
-              <Popup>
-                <span>Popup in FeatureGroup</span>
-              </Popup>
-              <Circle center={[59.913868, 10.752245]} radius={200} />
-            </FeatureGroup>
-          </Overlay>
-        </LayersControl>
 
-        <Marker position={[this.state.routes.route1.startLat,this.state.routes.route1.startLong]}>
-          <Popup>
-              {this.state.routes.route1.name}<br /> {this.state.routes.route1.distance}km | {this.state.routes.route1.climb} m+
-          </Popup>
-        </Marker>
+          
+        </LayersControl>
       </Map>
     )
   }
