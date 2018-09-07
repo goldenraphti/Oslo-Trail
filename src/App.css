@@ -155,6 +155,12 @@ nav a {
     text-align: left;
 }
 
+#description-home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #home-container .content h1 {
     padding-bottom: 50px;
 }
@@ -207,3 +213,4 @@ footer {
     color: var(--dark-grey);
     opacity: 1;
 }
+
