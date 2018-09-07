@@ -44,9 +44,12 @@ class Catalog extends Component {
                 <MapUI
                     mellomkollen = {routesData.features[0]}
                     mellomkollenMarker1 = {routesData.features[1].geometry.coordinates}
+                    mellomkollenWater = {routesData.features[8].geometry.coordinates}
                     helvetebrua = {routesData.features[2]}
                     helvetebruaMarker1 = {routesData.features[3].geometry.coordinates}
                     helvetebruaMarker2 = {routesData.features[4].geometry.coordinates}
+                    helvetebruaMarkerView = {routesData.features[5].geometry.coordinates}
+                    helvetebruaMarkerWC = {routesData.features[6].geometry.coordinates}
                   />
                   
                   <Footer />

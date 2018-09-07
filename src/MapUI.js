@@ -16,7 +16,7 @@ import { Map,
 import Leaflet from 'leaflet'
 import { Polyline as LeafletPolyline } from 'leaflet'
 // in the markers use "iconStart" for the start marker icon, and "iconFinish" for the finish marker icon
-import {  iconStart, iconFinish  } from './Icons';
+import {  iconStart, iconFinish,iconWater, iconWC , iconViewPoint  } from './Icons';
 
 
 
@@ -114,8 +114,6 @@ componentDidMount() {
            
             <Marker position={[this.props.mellomkollenMarker1[1],this.props.mellomkollenMarker1[0]]} 
                  title= 'Tour of Mellomkollen'
-                  color="var(--palette-1-3)"
-                  fillColor="var(--palette-1-3)"
                     icon={ iconStart }
               >
               <Popup>
@@ -125,8 +123,6 @@ componentDidMount() {
             
             <Marker position={[this.props.helvetebruaMarker1[1],this.props.helvetebruaMarker1[0]]} 
                  title= 'Tour of Mellomkollen'
-                  color="var(--palette-1-3)"
-                  fillColor="var(--palette-1-3)"
                     icon={ iconStart }
                 zIndexOffset= '1000'
               >
@@ -138,8 +134,6 @@ componentDidMount() {
           
           <Marker position={[this.props.helvetebruaMarker2[1],this.props.helvetebruaMarker2[0]]} 
                  title= 'Tour of Mellomkollen'
-                  color="var(--palette-1-3)"
-                  fillColor="var(--palette-1-3)"
                     icon={ iconFinish }
                 zIndexOffset= '-1000'
               >
@@ -148,7 +142,34 @@ componentDidMount() {
               </Popup>
             </Marker>
 
-
+            <Marker position={[this.props.mellomkollenWater[1],this.props.mellomkollenWater[0]]} 
+                     title= 'Tour of Mellomkollen'
+                        icon={ iconWater }
+                    zIndexOffset= '-1000'
+                  >
+                  <Popup>
+                      {this.state.routes.route1.name}<br /> {this.state.routes.route1.distance}km | {this.state.routes.route1.climb} m+
+                  </Popup>
+            </Marker>
+            
+            <Marker position={[this.props.helvetebruaMarkerView[1],this.props.helvetebruaMarkerView[0]]} 
+                     title= 'Tour of Mellomkollen'
+                        icon={ iconViewPoint }
+                    zIndexOffset= '-1000'
+                  >
+                  <Popup>
+                      {this.state.routes.route1.name}<br /> {this.state.routes.route1.distance}km | {this.state.routes.route1.climb} m+
+                  </Popup>
+            </Marker>
+            <Marker position={[this.props.helvetebruaMarkerWC[1],this.props.helvetebruaMarkerWC[0]]} 
+                     title= 'Tour of Mellomkollen'
+                        icon={ iconWC }
+                    zIndexOffset= '-1000'
+                  >
+                  <Popup>
+                      {this.state.routes.route1.name}<br /> {this.state.routes.route1.distance}km | {this.state.routes.route1.climb} m+
+                  </Popup>
+            </Marker>
           </Overlay>
 
           
