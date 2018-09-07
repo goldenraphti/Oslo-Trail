@@ -47,7 +47,6 @@ export default class MapUI extends Component {
               distance: 6.5,
               climb: 350,
               type: 'loop',
-              routePolyline: [],
           }
       },
       
@@ -104,28 +103,51 @@ componentDidMount() {
             />
           </BaseLayer>
           
-            <GeoJSON key='geojson-1' data={this.props.route1test} 
-                  color="var(--palette-1-3)"
-                  fillColor="var(--palette-1-3)" />
-            <GeoJSON key='geojson-2' data={this.props.routeGrefsenkollen} 
+            <GeoJSON key='route-1' data={this.props.mellomkollen} 
                   color="var(--palette-1-3)"
                   fillColor="var(--palette-1-3)"/>
-            <GeoJSON key='geojson-3' data={this.props.routeWyllerløypa}
+            <GeoJSON key='route-2' data={this.props.helvetebrua}
                   color="var(--palette-1-3)"
                   fillColor="var(--palette-1-3)" />
           
           <Overlay checked name="Marker with popup">
            
-            <Marker position={[this.state.routes.route1.startLat,this.state.routes.route1.startLong]} 
+            <Marker position={[this.props.mellomkollenMarker1[1],this.props.mellomkollenMarker1[0]]} 
                  title= 'Tour of Mellomkollen'
                   color="var(--palette-1-3)"
                   fillColor="var(--palette-1-3)"
-                    icon={ iconFinish }
+                    icon={ iconStart }
               >
               <Popup>
                   {this.state.routes.route1.name}<br /> {this.state.routes.route1.distance}km | {this.state.routes.route1.climb} m+
               </Popup>
             </Marker>
+            
+            <Marker position={[this.props.helvetebruaMarker1[1],this.props.helvetebruaMarker1[0]]} 
+                 title= 'Tour of Mellomkollen'
+                  color="var(--palette-1-3)"
+                  fillColor="var(--palette-1-3)"
+                    icon={ iconStart }
+                zIndexOffset= '1000'
+              >
+              <Popup>
+                  {this.state.routes.route1.name}<br /> {this.state.routes.route1.distance}km | {this.state.routes.route1.climb} m+
+              </Popup>
+            </Marker>
+
+          
+          <Marker position={[this.props.helvetebruaMarker2[1],this.props.helvetebruaMarker2[0]]} 
+                 title= 'Tour of Mellomkollen'
+                  color="var(--palette-1-3)"
+                  fillColor="var(--palette-1-3)"
+                    icon={ iconFinish }
+                zIndexOffset= '-1000'
+              >
+              <Popup>
+                  {this.state.routes.route1.name}<br /> {this.state.routes.route1.distance}km | {this.state.routes.route1.climb} m+
+              </Popup>
+            </Marker>
+
 
           </Overlay>
 

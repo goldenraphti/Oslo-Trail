@@ -4,6 +4,7 @@ import './App.css';
 import { Route } from 'react-router-dom';
 import Home from './Home'
 import Catalog from './Catalog'
+import About from './About'
 
 class App extends Component {
     render() {
@@ -16,6 +17,10 @@ class App extends Component {
 
                 <Route path="/catalog" render={() => (
                     <Catalog />
+                )} />
+                
+                <Route path="/about" render={() => (
+                    <About />
                 )} />
           </div>
         )

@@ -5,7 +5,7 @@ const DescriptionHome = () => {
     return (
 
               
-                   <div id="description-home-container">
+                   <div id="description-home-container" className="text-page-description-container">
                        <h1 class="animated fadeIn" >Oslo Trail</h1>
                        <ul>
                            <li class="animated fadeInUp faster">

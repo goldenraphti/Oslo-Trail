@@ -4,20 +4,20 @@ import ReactDOM from 'react-dom'
 import './App.css'
 import './animated.css'
 import Navbar from './Navbar'
-import DescriptionHome from './DescriptionHome'
+import DescriptionAbout from './DescriptionAbout'
 import Footer from './Footer'
 
 
-class Home extends Component {
+class About extends Component {
 
 
     render() {
         return (
-            <div id="home-container" className="text-page-container">
+            <div id="about-container" className="text-page-container">
                <Navbar />
                
                <div className="content">
-                   <DescriptionHome />
+                   <DescriptionAbout />
                </div>
                
                <Footer />
@@ -29,4 +29,4 @@ class Home extends Component {
 
 }
 
-export default Home;
+export default About;

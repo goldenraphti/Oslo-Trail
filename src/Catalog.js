@@ -17,8 +17,7 @@ import {
   TileLayer,
 } from 'react-leaflet'
 // using webpack json loader we can import our geojson file like this
-import geojsonRoute from './routesData'
-import routeGrefsenkollen from './routes/test-grefsenkollen'
+import routesData from './routes/routesData'
 
 
 
@@ -29,10 +28,8 @@ class Catalog extends Component {
     }
     
     componentDidMount() {
-        console.log('geojsonRoute' , geojsonRoute)
-        console.log('test-grefsenkollen-2' , routeGrefsenkollen)
-        console.log('test-grefsenkollen-2-1' , routeGrefsenkollen.features[0] , 'name' , routeGrefsenkollen.features[0].properties.name , 'array' , routeGrefsenkollen.features[0].geometry.coordinates )
-        console.log('test-grefsenkollen-2-2' , routeGrefsenkollen.features[1])
+        console.log('routesData-2' , routesData);
+        console.log('routesData-2-marker-1' , routesData.features[1].geometry.coordinates)
     }
 
 
@@ -45,9 +42,11 @@ class Catalog extends Component {
                 <Navbar />
                
                 <MapUI
-                    route1test = {geojsonRoute}
-                    routeGrefsenkollen = {routeGrefsenkollen.features[0]}
-                    routeWyllerløypa = {routeGrefsenkollen.features[1]}
+                    mellomkollen = {routesData.features[0]}
+                    mellomkollenMarker1 = {routesData.features[1].geometry.coordinates}
+                    helvetebrua = {routesData.features[2]}
+                    helvetebruaMarker1 = {routesData.features[3].geometry.coordinates}
+                    helvetebruaMarker2 = {routesData.features[4].geometry.coordinates}
                   />
                   
                   <Footer />

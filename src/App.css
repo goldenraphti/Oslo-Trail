@@ -127,7 +127,7 @@ nav a {
     padding: 0;
 }
 
-#home-container {
+.text-page-container {
     height: 100vh;
     background: local , linear-gradient(rgba(11, 11, 11, 0.8) , rgba(11, 11, 11, 0.8))  , url(images/SpoonGraphics-Topographic-Map-4.png) , top , repeat;
     display: flex;
@@ -135,18 +135,18 @@ nav a {
     align-items: center;
 }
 
-#home-container nav ul {
+.text-page-container nav ul {
     background: linear-gradient(rgba(11, 11, 11, 0.3) , rgba(11, 11, 11, 0)) ;
     color: var(--palette-1-3);
     box-shadow: none;
 }
 
-#home-container nav ul a,
-#home-container nav ul a:visited {
+.text-page-container nav ul a,
+.text-page-container nav ul a:visited {
     color: var(--palette-1-3);
 }
 
-#home-container .content {
+.text-page-container .content {
     height: calc(100vh -  var(--navbar-height));
     display: flex;
     flex-direction: column;
@@ -155,24 +155,26 @@ nav a {
     text-align: left;
 }
 
-#description-home-container {
+.text-page-description-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 90vw;
+    max-width: 800px;
 }
 
-#home-container .content h1 {
+.text-page-container .content h1 {
     padding-bottom: 50px;
 }
 
-#home-container .content li {
+.text-page-container .content li {
     padding-bottom: 15px;
     display: flex;
     align-items: center;
     cursor:auto;
 }
 
-#home-container .content li img {
+.text-page-container .content li img {
     width: 40px;
     margin-right: 20px;
 }
@@ -214,3 +216,8 @@ footer {
     opacity: 1;
 }
 
+@media only screen and (min-width: 600px) {
+    .text-page-description-container {
+        width: 70vw;
+    }
+}
