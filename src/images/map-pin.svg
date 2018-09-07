@@ -16,7 +16,10 @@
    version="1.1"
    id="svg1547"
    inkscape:version="0.92.3 (d244b95, 2018-08-02)"
-   sodipodi:docname="map-pin.svg">
+   sodipodi:docname="map-pin.svg"
+   inkscape:export-filename="/home/rf/Documents/Webdesign-2018/oslo-trail-klubb/graphic-resources/icons/map-pin.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
   <defs
      id="defs1541">
     <linearGradient
@@ -49,8 +52,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
-     inkscape:cx="23.085311"
-     inkscape:cy="42.795812"
+     inkscape:cx="26.620845"
+     inkscape:cy="37.997587"
      inkscape:document-units="mm"
      inkscape:current-layer="g2109"
      showgrid="false"
@@ -58,10 +61,10 @@
      fit-margin-right="1"
      fit-margin-bottom="1"
      fit-margin-top="1"
-     inkscape:window-width="1366"
-     inkscape:window-height="713"
-     inkscape:window-x="0"
-     inkscape:window-y="27"
+     inkscape:window-width="1280"
+     inkscape:window-height="996"
+     inkscape:window-x="1366"
+     inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata1544">
@@ -71,7 +74,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -87,7 +90,7 @@
          id="path2092"
          d="M 50,5 C 29.364,5 12.635,21.729 12.635,42.365 c 0,11.504 5.2,21.791 13.376,28.646 L 50,95 73.989,71.011 C 82.165,64.157 87.365,53.869 87.365,42.365 87.365,21.729 70.637,5 50,5 Z m 0,62.258 c -13.101,0 -23.721,-10.62 -23.721,-23.721 0,-13.102 10.62,-23.721 23.721,-23.721 13.101,0 23.722,10.619 23.722,23.721 0,13.101 -10.621,23.721 -23.722,23.721 z"
          inkscape:connector-curvature="0"
-         style="fill:url(#linearGradient2117);fill-opacity:1" />
+         style="fill:url(#linearGradient2117);fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:0.37795276;stroke-miterlimit:4;stroke-dasharray:none" />
     </g>
   </g>
 </svg>

@@ -46,16 +46,16 @@
   </defs>
   <sodipodi:namedview
      id="base"
-     pagecolor="#ffffff"
+     pagecolor="#cdcdcd"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.959798"
-     inkscape:cx="40.092333"
-     inkscape:cy="58.443875"
+     inkscape:zoom="7.919596"
+     inkscape:cx="28.478635"
+     inkscape:cy="44.504366"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer4"
      showgrid="false"
      fit-margin-left="1"
      fit-margin-right="1"
@@ -78,6 +78,22 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Layer 3">
+    <path
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.08993058;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path870"
+       sodipodi:type="arc"
+       sodipodi:cx="10.853897"
+       sodipodi:cy="11.331481"
+       sodipodi:rx="6.617178"
+       sodipodi:ry="6.9621606"
+       sodipodi:start="0"
+       sodipodi:end="6.2831761"
+       d="m 17.471075,11.331481 a 6.617178,6.9621606 0 0 1 -6.617163,6.962161 6.617178,6.9621606 0 0 1 -6.6171929,-6.962129 6.617178,6.9621606 0 0 1 6.6171319,-6.9621926 6.617178,6.9621606 0 0 1 6.617224,6.9620966 l -6.617178,6.4e-5 z" />
+  </g>
   <g
      inkscape:groupmode="layer"
      id="layer2"
@@ -333,14 +349,14 @@
      id="layer1"
      transform="translate(-80.732378,-65.202765)">
     <g
-       style=""
+       style="stroke:#000000;stroke-opacity:1;stroke-width:0.37795276;stroke-miterlimit:4;stroke-dasharray:none"
        id="g2109"
        transform="matrix(0.26458333,0,0,0.26458333,78.389368,64.879848)">
       <path
          id="path2092"
          d="M 50,5 C 29.364,5 12.635,21.729 12.635,42.365 c 0,11.504 5.2,21.791 13.376,28.646 L 50,95 73.989,71.011 C 82.165,64.157 87.365,53.869 87.365,42.365 87.365,21.729 70.637,5 50,5 Z m 0,62.258 c -13.101,0 -23.721,-10.62 -23.721,-23.721 0,-13.102 10.62,-23.721 23.721,-23.721 13.101,0 23.722,10.619 23.722,23.721 0,13.101 -10.621,23.721 -23.722,23.721 z"
          inkscape:connector-curvature="0"
-         style="fill:url(#linearGradient2117);fill-opacity:1"
+         style="fill:url(#linearGradient2117);fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:0.37795276;stroke-miterlimit:4;stroke-dasharray:none"
          sodipodi:insensitive="true" />
     </g>
   </g>
