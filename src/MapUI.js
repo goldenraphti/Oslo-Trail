@@ -52,11 +52,48 @@ export default class MapUI extends Component {
       
   }
 
-
-componentDidMount() {
-}
+//.map( element => console.log('markers to display', element.properties.name) )
 
 
+
+
+    componentDidMount() {
+//        this.consoleStuff();
+        this.displayMarkers('tour-of-mellomkollen');
+    }
+
+    consoleStuff = () => {
+        this.props.listToDisplay.filter(element => element.properties.route === 'helvetebrua' ).filter(element => element.properties.featureType === 'marker').map( element => console.log('helvetebrua markers', element.properties.name) )
+    }
+    
+    displayMarkers = (routesToDisplay) => {
+        
+        let markersListToDisplay = this.props.listToDisplay.filter(element => element.properties.route === routesToDisplay ).filter(element => element.properties.featureType === 'marker')
+        
+        return markersListToDisplay;
+    }
+    
+    iconToDisplay = (marker) => {
+        
+        console.log('start iconToDisplay()' , marker);
+        
+        if( marker.marker.properties.markerType === 'markerStart') {
+            console.log('iconStart');
+            return iconStart;
+        } else if( marker.marker.properties.markerType === 'markerFinish') {
+            console.log('iconFinish');
+            return iconFinish;
+        } else if( marker.marker.properties.markerType === 'markerWC') {
+            console.log('iconWC');
+            return iconWC;
+        } else if( marker.marker.properties.markerType === 'markerWater') {
+            console.log('iconWater');
+            return iconWater;
+        } else if( marker.marker.properties.markerType === 'markerViewPoint') {
+            console.log('iconViewPoint');
+            return iconViewPoint;
+        } 
+    }
 
 
   render() {
@@ -79,101 +116,100 @@ componentDidMount() {
             attribution : "Maps <a href=&quot;http://www.thunderforest.com/&quot;>Thunderforest</a>, Data <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         },
     }
+    
+    const listToDisplayForm =`<form id="routes-list">
+                        <h2>Routes list</h2>
+                        <ul>
+                            {this.props.listToDisplay.map( (route) => (
+                                <li ></li>
+                            ))}
+                        </ul>
+                    </form>`;
      
     
     return (
       <Map center={position} zoom={this.state.initialView.zoom} id="map-container">
-       <LayersControl position="topright">
-          <BaseLayer checked name={layers.landscape.nameTile}>
-            <TileLayer
-              attribution={layers.landscape.attribution}
-              url={layers.landscape.url}
-            />
-          </BaseLayer>
-          <BaseLayer name={layers.outdoors.nameTile}>
-            <TileLayer
-              attribution={layers.outdoors.attribution}
-              url={layers.outdoors.url}
-            />
-          </BaseLayer>
-          <BaseLayer name={layers.transport.nameTile}>
-            <TileLayer
-              attribution={layers.transport.attribution}
-              url={layers.transport.url}
-            />
-          </BaseLayer>
-          
-            <GeoJSON key='route-1' data={this.props.mellomkollen} 
-                  color="var(--palette-1-3)"
-                  fillColor="var(--palette-1-3)"/>
-            <GeoJSON key='route-2' data={this.props.helvetebrua}
-                  color="var(--palette-1-3)"
-                  fillColor="var(--palette-1-3)" />
-          
-          <Overlay checked name="Marker with popup">
-           
-            <Marker position={[this.props.mellomkollenMarker1[1],this.props.mellomkollenMarker1[0]]} 
-                 title= 'Tour of Mellomkollen'
-                    icon={ iconStart }
-              >
-              <Popup>
-                  {this.state.routes.route1.name}<br /> {this.state.routes.route1.distance}km | {this.state.routes.route1.climb} m+
-              </Popup>
-            </Marker>
-            
-            <Marker position={[this.props.helvetebruaMarker1[1],this.props.helvetebruaMarker1[0]]} 
-                 title= 'Tour of Mellomkollen'
-                    icon={ iconStart }
-                zIndexOffset= '1000'
-              >
-              <Popup>
-                  {this.state.routes.route1.name}<br /> {this.state.routes.route1.distance}km | {this.state.routes.route1.climb} m+
-              </Popup>
-            </Marker>
+          {this.listToDisplayForm}
+           <LayersControl position="topright">
+              <BaseLayer checked name={layers.landscape.nameTile}>
+                <TileLayer
+                  attribution={layers.landscape.attribution}
+                  url={layers.landscape.url}
+                />
+              </BaseLayer>
+              <BaseLayer name={layers.outdoors.nameTile}>
+                <TileLayer
+                  attribution={layers.outdoors.attribution}
+                  url={layers.outdoors.url}
+                />
+              </BaseLayer>
+              <BaseLayer name={layers.transport.nameTile}>
+                <TileLayer
+                  attribution={layers.transport.attribution}
+                  url={layers.transport.url}
+                />
+              </BaseLayer>
 
-          
-          <Marker position={[this.props.helvetebruaMarker2[1],this.props.helvetebruaMarker2[0]]} 
-                 title= 'Tour of Mellomkollen'
-                    icon={ iconFinish }
-                zIndexOffset= '-1000'
-              >
-              <Popup>
-                  {this.state.routes.route1.name}<br /> {this.state.routes.route1.distance}km | {this.state.routes.route1.climb} m+
-              </Popup>
-            </Marker>
+                <GeoJSON key='route-1' data={this.props.mellomkollen} 
+                      color="var(--palette-1-3)"
+                      fillColor="var(--palette-1-3)"/>
+                <GeoJSON key='route-2' data={this.props.helvetebrua}
+                      color="var(--palette-1-3)"
+                      fillColor="var(--palette-1-3)" />
 
-            <Marker position={[this.props.mellomkollenWater[1],this.props.mellomkollenWater[0]]} 
-                     title= 'Tour of Mellomkollen'
-                        icon={ iconWater }
-                    zIndexOffset= '-1000'
-                  >
-                  <Popup>
-                      {this.state.routes.route1.name}<br /> {this.state.routes.route1.distance}km | {this.state.routes.route1.climb} m+
-                  </Popup>
-            </Marker>
-            
-            <Marker position={[this.props.helvetebruaMarkerView[1],this.props.helvetebruaMarkerView[0]]} 
-                     title= 'Tour of Mellomkollen'
-                        icon={ iconViewPoint }
-                    zIndexOffset= '-1000'
-                  >
-                  <Popup>
-                      {this.state.routes.route1.name}<br /> {this.state.routes.route1.distance}km | {this.state.routes.route1.climb} m+
-                  </Popup>
-            </Marker>
-            <Marker position={[this.props.helvetebruaMarkerWC[1],this.props.helvetebruaMarkerWC[0]]} 
-                     title= 'Tour of Mellomkollen'
-                        icon={ iconWC }
-                    zIndexOffset= '-1000'
-                  >
-                  <Popup>
-                      {this.state.routes.route1.name}<br /> {this.state.routes.route1.distance}km | {this.state.routes.route1.climb} m+
-                  </Popup>
-            </Marker>
-          </Overlay>
+              <Overlay checked name="Routes">
+               
+                {this.displayMarkers('tour-of-mellomkollen').filter(marker => marker.properties.markerType === 'markerStart' || marker.properties.markerType === 'markerFinish' ).map( (marker) => (
+                    <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
+                             title= {marker.properties.name}
+                            icon={ this.iconToDisplay({marker}) }
+                            zIndexOffset= '-1000'
+                            key = {marker.properties.name}
+                          >
+                    </Marker>
+                ))}
+                
+                </ Overlay>
+                
+               <Overlay name="Point to refill water">
+               
+                {this.displayMarkers('tour-of-mellomkollen').filter(marker => marker.properties.markerType === 'markerWater' ).map( (marker) => (
+                    <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
+                             title= {marker.properties.name}
+                            icon={ this.iconToDisplay({marker}) }
+                            zIndexOffset= '-1000'
+                            key = {marker.properties.name}
+                          >
+                    </Marker>
+                ))}
+              </Overlay>
+              <Overlay name="WC">
+               
+                {this.displayMarkers('tour-of-mellomkollen').filter(marker => marker.properties.markerType === 'markerWC' ).map( (marker) => (
+                    <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
+                             title= {marker.properties.name}
+                            icon={ this.iconToDisplay({marker}) }
+                            zIndexOffset= '-1000'
+                            key = {marker.properties.name}
+                          >
+                    </Marker>
+                ))}
+              </Overlay>
+              <Overlay name="View points">
+               
+                {this.displayMarkers('tour-of-mellomkollen').filter(marker => marker.properties.markerType === 'markerViewPoint' ).map( (marker) => (
+                    <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
+                             title= {marker.properties.name}
+                            icon={ this.iconToDisplay({marker}) }
+                            zIndexOffset= '-1000'
+                            key = {marker.properties.name}
+                          >
+                    </Marker>
+                ))}
+              </Overlay>
 
-          
-        </LayersControl>
+
+            </LayersControl>
       </Map>
     )
   }
