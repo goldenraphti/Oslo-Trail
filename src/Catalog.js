@@ -28,12 +28,13 @@ class Catalog extends Component {
     
     state = {
         listToDisplay : routesData.features,
-        filter: {},
+        filterDistance:null,
+        filterClimb:null,
+        // filter false means the user does not want this type of route in the list
+        filterLoop:true,
+        filterTraversee:true,
         selectedRoute: null,
     }
-
-
-    
     
     componentDidMount() {
         this.retrieveRoutesData();
@@ -41,6 +42,32 @@ class Catalog extends Component {
 
     // when component mount, import all routesData to listToDisplay, before being filtered
     retrieveRoutesData() {
+        this.setState({listToDisplay: routesData.features})
+    }
+
+    updateVal = (e) => {
+        console.log(e, "id", e.id, "value", e.value);
+        // updates the value in the span just above the slider in real time
+        e.id === "input-climb" || e.id === "input-distance" ? document.getElementById(`span-value-${e.id}`).textContent = e.value : null;
+        // update the filter values in the state
+        if (e.id === "input-distance") {
+            this.setState({filterDistance : e.value})
+        } else if (e.id === "input-climb") {
+            this.setState({filterClimb : e.value})
+        } else if (e.id === "input-loop") {
+            this.state.filterLoop !== true ? this.setState({filterLoop : true}) : this.setState({filterLoop : false})
+        } else if (e.id === "input-traversee") {
+            this.state.filterTraversee !== true ? this.setState({filterTraversee : true}) : this.setState({filterTraversee : false})
+        } else {
+            console.log('updateVal function called but e.id does not correspond to anything known')
+        }
+        
+        console.log(this.state);
+    }
+    
+        
+    // modify listToDisplay after each time the user moves a slider a check/uncheck a box
+    filterListRoutes = () => {
         this.setState({listToDisplay: routesData.features})
     }
             
@@ -62,11 +89,6 @@ class Catalog extends Component {
             console.log(routesData.features)
 //            this.setState({listToDisplay: routesData.features})
         }
-    }
-    
-    // modify listToDisplay after user have clicked to filter list
-    filterListRoutes = () => {
-        this.setState({listToDisplay: routesData.features})
     }
     
     clearFilters = () => {
@@ -103,6 +125,9 @@ class Catalog extends Component {
                 <MapUI
                    listToDisplay = {this.state.listToDisplay}
                    markersListToDisplay = {this.state.markersListToDisplay}
+                    filterLoop = {this.state.filterLoop}
+                    filterTraversee = {this.state.filterTraversee}
+                   updateVal = {this.updateVal}
                    selectRoute = {this.selectRoute}
                    clearFilters = {this.clearFilters}
                    layers = {this.layers}

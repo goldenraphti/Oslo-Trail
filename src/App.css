@@ -249,8 +249,24 @@ form#catalog-panel h3 {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin: 10px;
+    margin: 10px 20px;
     padding: 0;
+}
+
+.range-slider {
+    align-items:flex-end;
+}
+
+.range-slider-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.range-input-value {
+    margin: 0;
+    padding: 0;
+    line-height: 8px;
 }
 
 .checkbox-container {

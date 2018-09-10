@@ -210,31 +210,37 @@ export default class MapUI extends Component {
                    <div id="filters form-section">
                         <h2>Filters</h2>
                       
-                       <div class="filter-div range-slider">
+                       <div className="filter-div range-slider">
                           <h3>Distance (km)</h3>
-                           <input class="range-slider__range" type="range" min="0" max="200"></input>
+                           <div className="range-slider-column">
+                              <span className="range-input-value" id="span-value-input-distance">-</span>
+                               <input  onChange={e => this.props.updateVal(e.target)} className="range-slider__range"  id="input-distance" type="range" min="0" max="100" step="5"></input>
+                           </div>
                         </div>
               
-                        <div class="filter-div range-slider">
+                        <div className="filter-div range-slider">
                           <h3>Climb (m+)</h3>
-                            <input class="range-slider__range" type="range" min="0" max="3000"></input>
+                           <div className="range-slider-column">
+                               <span className="range-input-value" id="span-value-input-climb">-</span>
+                                <input  onChange={e => this.props.updateVal(e.target)} className="range-slider__range"  id="input-climb" type="range" min="0" max="3000" step="10"></input>
+                            </div>
                         </div>
               
-                        <div class="filter-div checkbox-container">
+                        <div className="filter-div checkbox-container">
                           <h3>Type of route</h3>
-                            <div class="checkbox-column">
-                                <div class="checkbox-div">
-                                   <p>Loop</p>
-                                    <input class="" type="checkbox" min="0" max="500" label="loop" title="loop"></input>
+                            <div className="checkbox-column">
+                                <div className="checkbox-div">
+                                   <label>Loop</label>
+                                    <input  onChange={e => this.props.updateVal(e.target)} className="" id="input-loop"  type="checkbox" checked={this.props.filterLoop} title="loop"></input>
                                 </div>
-                                  <div class="checkbox-div">
-                                   <p>Traversee</p>
-                                    <input class="" type="checkbox" min="0" max="500" label="loop" title="loop"></input>
+                                  <div className="checkbox-div">
+                                   <label>Traversee</label>
+                                    <input  onChange={e => this.props.updateVal(e.target)} className="" id="input-traversee"  type="checkbox" checked={this.props.filterTraversee}  title="traversee"></input>
                                 </div>
                             </div>
                         </div> 
                    </div>
-                    <div id="list-routes" class="form-section">
+                    <div id="list-routes" className="form-section">
                         <h2>Routes list</h2>
                         <ul>
                             {this.props.listToDisplay.filter(route => route.properties.featureType === 'route' ).map( (route) => (
