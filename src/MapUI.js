@@ -157,9 +157,9 @@ export default class MapUI extends Component {
                       color="var(--palette-1-3)"
                       fillColor="var(--palette-1-3)" />
 
-              <Overlay checked name="Routes">
+              <Overlay name="Start/Finish">
                
-                {this.displayMarkers('tour-of-mellomkollen').filter(marker => marker.properties.markerType === 'markerStart' || marker.properties.markerType === 'markerFinish' ).map( (marker) => (
+                {this.displayMarkers('helvetebrua').filter(marker => marker.properties.markerType === 'markerStart' || marker.properties.markerType === 'markerFinish' ).map( (marker) => (
                     <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
                              title= {marker.properties.name}
                             icon={ this.iconToDisplay({marker}) }
@@ -173,7 +173,7 @@ export default class MapUI extends Component {
                 
                <Overlay name="Point to refill water">
                
-                {this.displayMarkers('tour-of-mellomkollen').filter(marker => marker.properties.markerType === 'markerWater' ).map( (marker) => (
+                {this.displayMarkers('helvetebrua').filter(marker => marker.properties.markerType === 'markerWater' ).map( (marker) => (
                     <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
                              title= {marker.properties.name}
                             icon={ this.iconToDisplay({marker}) }
@@ -185,7 +185,7 @@ export default class MapUI extends Component {
               </Overlay>
               <Overlay name="WC">
                
-                {this.displayMarkers('tour-of-mellomkollen').filter(marker => marker.properties.markerType === 'markerWC' ).map( (marker) => (
+                {this.displayMarkers('helvetebrua').filter(marker => marker.properties.markerType === 'markerWC' ).map( (marker) => (
                     <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
                              title= {marker.properties.name}
                             icon={ this.iconToDisplay({marker}) }
@@ -197,7 +197,7 @@ export default class MapUI extends Component {
               </Overlay>
               <Overlay name="View points">
                
-                {this.displayMarkers('tour-of-mellomkollen').filter(marker => marker.properties.markerType === 'markerViewPoint' ).map( (marker) => (
+                {this.displayMarkers('helvetebrua').filter(marker => marker.properties.markerType === 'markerViewPoint' ).map( (marker) => (
                     <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
                              title= {marker.properties.name}
                             icon={ this.iconToDisplay({marker}) }

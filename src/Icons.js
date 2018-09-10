@@ -24,38 +24,38 @@ const iconFinish = new L.Icon({
 });
 
 const iconWater = new L.Icon({
-    iconUrl: require('./images/water.svg'),
+    iconUrl: require('./images/pin-water.png'),
     iconRetinaUrl: null,
-    iconAnchor: [20,35],
+    iconAnchor: [10,30],
     popupAnchor:  [0, -30],
     shadowUrl: require('./images/marker-shadow.png'),
     shadowSize: [40, 40],
     shadowAnchor: [10, 37],
-    iconSize: new L.Point(40, 40),
+    iconSize: new L.Point(24, 30),
     zIndexOffset: 0,
 });
 
 const iconWC = new L.Icon({
-    iconUrl: require('./images/WC.svg'),
+    iconUrl: require('./images/pin-wc.png'),
     iconRetinaUrl: null,
-    iconAnchor: [20,35],
+    iconAnchor: [10,30],
     popupAnchor:  [0, -30],
     shadowUrl: require('./images/marker-shadow.png'),
     shadowSize: [40, 40],
     shadowAnchor: [10, 37],
-    iconSize: new L.Point(40, 40),
+    iconSize: new L.Point(24, 30),
     zIndexOffset: 0,
 });
 
 const iconViewPoint = new L.Icon({
-    iconUrl: require('./images/viewPoint.svg'),
+    iconUrl: require('./images/pin-favorite.png'),
     iconRetinaUrl: null,
-    iconAnchor: [20,35],
+    iconAnchor: [10,30],
     popupAnchor:  [0, -30],
     shadowUrl: require('./images/marker-shadow.png'),
     shadowSize: [40, 40],
     shadowAnchor: [10, 37],
-    iconSize: new L.Point(40, 40),
+    iconSize: new L.Point(24, 30),
     zIndexOffset: 0,
 });
 
