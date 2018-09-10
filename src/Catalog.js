@@ -29,7 +29,7 @@ class Catalog extends Component {
     state = {
         listToDisplay : routesData.features,
         filter: {},
-        selectedRoute: '',
+        selectedRoute: null,
     }
 
 
@@ -37,31 +37,63 @@ class Catalog extends Component {
     
     componentDidMount() {
         this.retrieveRoutesData();
-        this.displayList();
     }
 
     // when component mount, import all routesData to listToDisplay, before being filtered
     retrieveRoutesData() {
         this.setState({listToDisplay: routesData.features})
     }
-
-    // check if there is a rute selected, else if there is filters selected, and send list of routes to display in consequences filtering the 'routesData' (full list imported from routesData.js)
-    displayList = () => {
-        
-    }
             
     // modify listToDisplay after user have clicked on a route in list
-    selectRoute = () => {
+    selectRoute = (selectedRoute) => {
+        console.log('inside selectRoute()' , selectedRoute , routesData.features);
+        let newListToDisplay = routesData.features.filter( element => element.properties.route === selectedRoute)
         
-            
+        this.setState({listToDisplay: newListToDisplay });
+        this.setState({selectedRoute: selectedRoute});
+//        console.log(this.state);
+        this.updateListToDisplay();
     }
-        
+    
+    updateListToDisplay = () => {
+        console.log('inside updateListToDisplay() - routesData.features' ,routesData.features);
+        console.log('inside updateListToDisplay() - this.state' ,this.state);
+        if (this.state.selectedRoute !== null) {
+            console.log(routesData.features)
+//            this.setState({listToDisplay: routesData.features})
+        }
+    }
+    
     // modify listToDisplay after user have clicked to filter list
     filterListRoutes = () => {
-        
+        this.setState({listToDisplay: routesData.features})
+    }
+    
+    clearFilters = () => {
+        this.setState({listToDisplay: routesData.features});
     }
 
 
+    //list of map layers ( TO BE REFACTORED AND ADDED DYNAMICALLY)
+    layers = {
+        landscape: {
+            nameTile: 'landscape',
+            url: 'https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=dcc7bcce19df4c7e9537813bd66c45b5',
+            attribution : "Maps <a href=&quot;http://www.thunderforest.com/&quot;>Thunderforest</a>, Data <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors",
+            initiallyChecked :true
+        },
+        outdoors: {
+            nameTile: 'outdoors',
+            url: 'https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=dcc7bcce19df4c7e9537813bd66c45b5',
+            attribution : "Maps <a href=&quot;http://www.thunderforest.com/&quot;>Thunderforest</a>, Data <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+        },
+        transport: {
+            nameTile: 'transport',
+            url: 'https://tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=dcc7bcce19df4c7e9537813bd66c45b5',
+            attribution : "Maps <a href=&quot;http://www.thunderforest.com/&quot;>Thunderforest</a>, Data <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+        },
+    }
+    
     render() {
         return (
             <div id='catalog-container'>
@@ -70,6 +102,10 @@ class Catalog extends Component {
                
                 <MapUI
                    listToDisplay = {this.state.listToDisplay}
+                   markersListToDisplay = {this.state.markersListToDisplay}
+                   selectRoute = {this.selectRoute}
+                   clearFilters = {this.clearFilters}
+                   layers = {this.layers}
                     mellomkollen = {routesData.features[0]}
                     mellomkollenMarker1 = {routesData.features[1].geometry.coordinates}
                     mellomkollenWater = {routesData.features[8].geometry.coordinates}

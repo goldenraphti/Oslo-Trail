@@ -58,39 +58,23 @@ export default class MapUI extends Component {
 
 
     componentDidMount() {
-//        this.consoleStuff();
-        this.displayMarkers('tour-of-mellomkollen');
     }
 
     consoleStuff = () => {
         this.props.listToDisplay.filter(element => element.properties.route === 'helvetebrua' ).filter(element => element.properties.featureType === 'marker').map( element => console.log('helvetebrua markers', element.properties.name) )
     }
     
-    displayMarkers = (routesToDisplay) => {
-        
-        let markersListToDisplay = this.props.listToDisplay.filter(element => element.properties.route === routesToDisplay ).filter(element => element.properties.featureType === 'marker')
-        
-        return markersListToDisplay;
-    }
-    
     iconToDisplay = (marker) => {
         
-        console.log('start iconToDisplay()' , marker);
-        
         if( marker.marker.properties.markerType === 'markerStart') {
-            console.log('iconStart');
             return iconStart;
         } else if( marker.marker.properties.markerType === 'markerFinish') {
-            console.log('iconFinish');
             return iconFinish;
         } else if( marker.marker.properties.markerType === 'markerWC') {
-            console.log('iconWC');
             return iconWC;
         } else if( marker.marker.properties.markerType === 'markerWater') {
-            console.log('iconWater');
             return iconWater;
         } else if( marker.marker.properties.markerType === 'markerViewPoint') {
-            console.log('iconViewPoint');
             return iconViewPoint;
         } 
     }
@@ -98,12 +82,16 @@ export default class MapUI extends Component {
 
   render() {
       
+      // gives the initial view
     const position = [this.state.initialView.lat, this.state.initialView.lng]
+    
+    //list of map layers ( TO BE REFACTORED AND ADDED DYNAMICALLY)
     const layers = {
         landscape: {
             nameTile: 'landscape',
             url: 'https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=dcc7bcce19df4c7e9537813bd66c45b5',
-            attribution : "Maps <a href=&quot;http://www.thunderforest.com/&quot;>Thunderforest</a>, Data <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+            attribution : "Maps <a href=&quot;http://www.thunderforest.com/&quot;>Thunderforest</a>, Data <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors",
+            initiallyChecked :true
         },
         outdoors: {
             nameTile: 'outdoors',
@@ -117,20 +105,35 @@ export default class MapUI extends Component {
         },
     }
     
-    const listToDisplayForm =`<form id="routes-list">
-                        <h2>Routes list</h2>
-                        <ul>
-                            {this.props.listToDisplay.map( (route) => (
-                                <li ></li>
-                            ))}
-                        </ul>
-                    </form>`;
+    const layersRefactored = `            
+            {this.layers.map( layer => (
+                <BaseLayer checked name={layers.landscape.nameTile}>
+                    <TileLayer
+                      attribution={layers.landscape.attribution}
+                      url={layers.landscape.url}
+                    />
+              </BaseLayer>
+            ))}`
      
+    let markersListToDisplay = this.props.listToDisplay.filter(element => element.properties.featureType === 'marker' ) ;
+      let routesToDisplay = this.props.listToDisplay.filter(element => element.properties.featureType === 'route' ) 
     
     return (
       <Map center={position} zoom={this.state.initialView.zoom} id="map-container">
-          {this.listToDisplayForm}
+          <form id="catalog-panel">
+                <div id="list-routes">
+                    <h2>Routes list</h2>
+                    <ul>
+                        {this.props.listToDisplay.filter(route => route.properties.featureType === 'route' ).map( (route) => (
+                            <li key={route.properties.name} onClick={e => this.props.selectRoute(route.properties.route)}><button type="button" href="#">{route.properties.route}</button></li>
+                        ))}
+                    </ul>
+                    <div id="clear-filters" className="link" role="button" onClick={e => this.props.clearFilters()} ><button type="button">Show all routes</button></div>
+                </div>
+            </form>
+            
            <LayersControl position="topright">
+             
               <BaseLayer checked name={layers.landscape.nameTile}>
                 <TileLayer
                   attribution={layers.landscape.attribution}
@@ -149,17 +152,19 @@ export default class MapUI extends Component {
                   url={layers.transport.url}
                 />
               </BaseLayer>
+                
 
-                <GeoJSON key='route-1' data={this.props.mellomkollen} 
+               
+               {routesToDisplay.map( route => (
+                   <GeoJSON key={route.properties.name} data={route} 
                       color="var(--palette-1-3)"
                       fillColor="var(--palette-1-3)"/>
-                <GeoJSON key='route-2' data={this.props.helvetebrua}
-                      color="var(--palette-1-3)"
-                      fillColor="var(--palette-1-3)" />
+                ))}
+
 
               <Overlay name="Start/Finish">
                
-                {this.displayMarkers('helvetebrua').filter(marker => marker.properties.markerType === 'markerStart' || marker.properties.markerType === 'markerFinish' ).map( (marker) => (
+                {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerStart' || marker.properties.markerType === 'markerFinish' ).map( (marker) => (
                     <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
                              title= {marker.properties.name}
                             icon={ this.iconToDisplay({marker}) }
@@ -173,7 +178,7 @@ export default class MapUI extends Component {
                 
                <Overlay name="Point to refill water">
                
-                {this.displayMarkers('helvetebrua').filter(marker => marker.properties.markerType === 'markerWater' ).map( (marker) => (
+                {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerWater' ).map( (marker) => (
                     <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
                              title= {marker.properties.name}
                             icon={ this.iconToDisplay({marker}) }
@@ -185,7 +190,7 @@ export default class MapUI extends Component {
               </Overlay>
               <Overlay name="WC">
                
-                {this.displayMarkers('helvetebrua').filter(marker => marker.properties.markerType === 'markerWC' ).map( (marker) => (
+                {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerWC' ).map( (marker) => (
                     <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
                              title= {marker.properties.name}
                             icon={ this.iconToDisplay({marker}) }
@@ -197,7 +202,7 @@ export default class MapUI extends Component {
               </Overlay>
               <Overlay name="View points">
                
-                {this.displayMarkers('helvetebrua').filter(marker => marker.properties.markerType === 'markerViewPoint' ).map( (marker) => (
+                {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerViewPoint' ).map( (marker) => (
                     <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
                              title= {marker.properties.name}
                             icon={ this.iconToDisplay({marker}) }
