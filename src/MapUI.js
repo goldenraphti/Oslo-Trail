@@ -60,10 +60,6 @@ export default class MapUI extends Component {
     componentDidMount() {
     }
 
-    consoleStuff = () => {
-        this.props.listToDisplay.filter(element => element.properties.route === 'helvetebrua' ).filter(element => element.properties.featureType === 'marker').map( element => console.log('helvetebrua markers', element.properties.name) )
-    }
-    
     iconToDisplay = (marker) => {
         
         if( marker.marker.properties.markerType === 'markerStart') {
@@ -119,103 +115,137 @@ export default class MapUI extends Component {
       let routesToDisplay = this.props.listToDisplay.filter(element => element.properties.featureType === 'route' ) 
     
     return (
-      <Map center={position} zoom={this.state.initialView.zoom} id="map-container">
-          <form id="catalog-panel">
-                <div id="list-routes">
-                    <h2>Routes list</h2>
-                    <ul>
-                        {this.props.listToDisplay.filter(route => route.properties.featureType === 'route' ).map( (route) => (
-                            <li key={route.properties.name} onClick={e => this.props.selectRoute(route.properties.route)}><button type="button" href="#">{route.properties.route}</button></li>
-                        ))}
-                    </ul>
-                    <div id="clear-filters" className="link" role="button" onClick={e => this.props.clearFilters()} ><button type="button">Show all routes</button></div>
-                </div>
-            </form>
+        
+          <div id="map-form-container">
+
+                <Map center={position} zoom={this.state.initialView.zoom} id="map-container">
+                
+               <LayersControl position="topright">
+                 
+                  <BaseLayer checked name={layers.landscape.nameTile}>
+                    <TileLayer
+                      attribution={layers.landscape.attribution}
+                      url={layers.landscape.url}
+                    />
+                  </BaseLayer>
+                  <BaseLayer name={layers.outdoors.nameTile}>
+                    <TileLayer
+                      attribution={layers.outdoors.attribution}
+                      url={layers.outdoors.url}
+                    />
+                  </BaseLayer>
+                  <BaseLayer name={layers.transport.nameTile}>
+                    <TileLayer
+                      attribution={layers.transport.attribution}
+                      url={layers.transport.url}
+                    />
+                  </BaseLayer>
+                    
+              
+                   
+                   {routesToDisplay.map( route => (
+                       <GeoJSON key={route.properties.name} data={route} 
+                          color="var(--palette-1-3)"
+                          fillColor="var(--palette-1-3)"/>
+                    ))}
+              
+              
+                  <Overlay name="Start/Finish">
+                   
+                    {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerStart' || marker.properties.markerType === 'markerFinish' ).map( (marker) => (
+                        <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
+                                 title= {marker.properties.name}
+                                icon={ this.iconToDisplay({marker}) }
+                                zIndexOffset= '-1000'
+                                key = {marker.properties.name}
+                              >
+                        </Marker>
+                    ))}
+                    
+                    </ Overlay>
+                    
+                   <Overlay name="Point to refill water">
+                   
+                    {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerWater' ).map( (marker) => (
+                        <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
+                                 title= {marker.properties.name}
+                                icon={ this.iconToDisplay({marker}) }
+                                zIndexOffset= '-1000'
+                                key = {marker.properties.name}
+                              >
+                        </Marker>
+                    ))}
+                  </Overlay>
+                  <Overlay name="WC">
+                   
+                    {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerWC' ).map( (marker) => (
+                        <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
+                                 title= {marker.properties.name}
+                                icon={ this.iconToDisplay({marker}) }
+                                zIndexOffset= '-1000'
+                                key = {marker.properties.name}
+                              >
+                        </Marker>
+                    ))}
+                  </Overlay>
+                  <Overlay name="View points">
+                   
+                    {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerViewPoint' ).map( (marker) => (
+                        <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
+                                 title= {marker.properties.name}
+                                icon={ this.iconToDisplay({marker}) }
+                                zIndexOffset= '-1000'
+                                key = {marker.properties.name}
+                              >
+                        </Marker>
+                    ))}
+                  </Overlay>
+              
+              
+                </LayersControl>
+            </Map>
             
-           <LayersControl position="topright">
-             
-              <BaseLayer checked name={layers.landscape.nameTile}>
-                <TileLayer
-                  attribution={layers.landscape.attribution}
-                  url={layers.landscape.url}
-                />
-              </BaseLayer>
-              <BaseLayer name={layers.outdoors.nameTile}>
-                <TileLayer
-                  attribution={layers.outdoors.attribution}
-                  url={layers.outdoors.url}
-                />
-              </BaseLayer>
-              <BaseLayer name={layers.transport.nameTile}>
-                <TileLayer
-                  attribution={layers.transport.attribution}
-                  url={layers.transport.url}
-                />
-              </BaseLayer>
-                
-
-               
-               {routesToDisplay.map( route => (
-                   <GeoJSON key={route.properties.name} data={route} 
-                      color="var(--palette-1-3)"
-                      fillColor="var(--palette-1-3)"/>
-                ))}
-
-
-              <Overlay name="Start/Finish">
-               
-                {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerStart' || marker.properties.markerType === 'markerFinish' ).map( (marker) => (
-                    <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
-                             title= {marker.properties.name}
-                            icon={ this.iconToDisplay({marker}) }
-                            zIndexOffset= '-1000'
-                            key = {marker.properties.name}
-                          >
-                    </Marker>
-                ))}
-                
-                </ Overlay>
-                
-               <Overlay name="Point to refill water">
-               
-                {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerWater' ).map( (marker) => (
-                    <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
-                             title= {marker.properties.name}
-                            icon={ this.iconToDisplay({marker}) }
-                            zIndexOffset= '-1000'
-                            key = {marker.properties.name}
-                          >
-                    </Marker>
-                ))}
-              </Overlay>
-              <Overlay name="WC">
-               
-                {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerWC' ).map( (marker) => (
-                    <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
-                             title= {marker.properties.name}
-                            icon={ this.iconToDisplay({marker}) }
-                            zIndexOffset= '-1000'
-                            key = {marker.properties.name}
-                          >
-                    </Marker>
-                ))}
-              </Overlay>
-              <Overlay name="View points">
-               
-                {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerViewPoint' ).map( (marker) => (
-                    <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
-                             title= {marker.properties.name}
-                            icon={ this.iconToDisplay({marker}) }
-                            zIndexOffset= '-1000'
-                            key = {marker.properties.name}
-                          >
-                    </Marker>
-                ))}
-              </Overlay>
-
-
-            </LayersControl>
-      </Map>
+              <form id="catalog-panel">
+              
+                   <div id="filters form-section">
+                        <h2>Filters</h2>
+                      
+                       <div class="filter-div range-slider">
+                          <h3>Distance (km)</h3>
+                           <input class="range-slider__range" type="range" min="0" max="200"></input>
+                        </div>
+              
+                        <div class="filter-div range-slider">
+                          <h3>Climb (m+)</h3>
+                            <input class="range-slider__range" type="range" min="0" max="3000"></input>
+                        </div>
+              
+                        <div class="filter-div checkbox-container">
+                          <h3>Type of route</h3>
+                            <div class="checkbox-column">
+                                <div class="checkbox-div">
+                                   <p>Loop</p>
+                                    <input class="" type="checkbox" min="0" max="500" label="loop" title="loop"></input>
+                                </div>
+                                  <div class="checkbox-div">
+                                   <p>Traversee</p>
+                                    <input class="" type="checkbox" min="0" max="500" label="loop" title="loop"></input>
+                                </div>
+                            </div>
+                        </div> 
+                   </div>
+                    <div id="list-routes" class="form-section">
+                        <h2>Routes list</h2>
+                        <ul>
+                            {this.props.listToDisplay.filter(route => route.properties.featureType === 'route' ).map( (route) => (
+                                <li key={route.properties.name} onClick={e => this.props.selectRoute(route.properties.route)}><button type="button" href="#">{route.properties.route}</button></li>
+                            ))}
+                        </ul>
+                        <div id="clear-filters" className="link" role="button" onClick={e => this.props.clearFilters()} ><button type="button">Show all routes</button></div>
+                    </div>
+              </form>
+            
+          </div>
     )
   }
 }

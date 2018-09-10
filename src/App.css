@@ -185,9 +185,17 @@ nav a {
     flex-direction: column;
 }
 
+#map-form-container {
+    min-width: 100vw;
+    max-width: 100vw;
+    display: flex;
+    align-items: center;
+    
+}
+
 #map-container {
     text-align: center;
-    width: 100vw;
+    width: 100%;
     height: calc( 100vh - var(--navbar-height));
     display: flex;
     flex-direction: column;
@@ -203,11 +211,9 @@ footer {
     opacity: 0.7;
     color: var(--light-grey);
     text-align: center;
-    text-shadow: 0px 0px 2px rgba(255, 255, 255, 1);
 }
 
 form#catalog-panel {
-    position: absolute;
     z-index: 500;
     right: 0;
     width: 20vw;
@@ -218,13 +224,53 @@ form#catalog-panel {
     box-shadow: -7px 0 10px -10px var(--medium-grey);
 }
 
-form#catalog-panel #list-routes{
-    margin-top: 100px;
-    padding: 20px;
+form#catalog-panel .form-section{
+    margin: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-form#catalog-panel #list-routes h2 {
+form#catalog-panel h2 {
     margin: 20px;
+    text-align: center;
+}
+
+form#catalog-panel h3 {
+    font-size: 0.8em;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.filter-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 0;
+}
+
+.checkbox-container {
+    align-items: baseline;
+}
+
+.range-slider__range {
+    width: 75px;
+    margin: 0;
+    padding: 0;
+}
+
+.checkbox-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    font-size: 0.8em;
 }
 
 form#catalog-panel #list-routes ul li {
@@ -262,6 +308,12 @@ form#catalog-panel #clear-filters button:hover {
     margin-right: auto;
     color: var(--dark-grey);
     opacity: 1;
+    text-shadow: 0px 0px 2px rgba(255, 255, 255, 1);
+}
+
+footer a:hover {
+    color: var(--palette-1-2);
+    text-decoration: underline;
 }
 
 @media only screen and (min-width: 600px) {
