@@ -1,21 +1,8 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-import { Link } from 'react-router-dom'
 import './App.css'
 import Navbar from './Navbar'
-import L from 'leaflet';
 import MapUI from './MapUI';
 import Footer from './Footer'
-import {
-    FeatureGroup,
-    Circle,
-  LayerGroup,
-  LayersControl,
-  Marker,
-  Popup,
-  Rectangle,
-  TileLayer,
-} from 'react-leaflet'
 // using webpack json loader we can import our geojson file like this
 import routesData from './routes/routesData'
 
@@ -34,6 +21,7 @@ class Catalog extends Component {
         filterLoop:true,
         filterTraversee:true,
         selectedRoute: null,
+        selectedMapLayer: 'landscape'
     }
     
     componentDidMount() {
@@ -73,23 +61,12 @@ class Catalog extends Component {
             
     // modify listToDisplay after user have clicked on a route in list
     selectRoute = (selectedRoute) => {
-        console.log('inside selectRoute()' , selectedRoute , routesData.features);
         let newListToDisplay = routesData.features.filter( element => element.properties.route === selectedRoute)
         
         this.setState({listToDisplay: newListToDisplay });
         this.setState({selectedRoute: selectedRoute});
-//        console.log(this.state);
-        this.updateListToDisplay();
     }
-    
-    updateListToDisplay = () => {
-        console.log('inside updateListToDisplay() - routesData.features' ,routesData.features);
-        console.log('inside updateListToDisplay() - this.state' ,this.state);
-        if (this.state.selectedRoute !== null) {
-            console.log(routesData.features)
-//            this.setState({listToDisplay: routesData.features})
-        }
-    }
+
     
     clearFilters = () => {
         this.setState({listToDisplay: routesData.features});
@@ -130,15 +107,7 @@ class Catalog extends Component {
                    updateVal = {this.updateVal}
                    selectRoute = {this.selectRoute}
                    clearFilters = {this.clearFilters}
-                   layers = {this.layers}
-                    mellomkollen = {routesData.features[0]}
-                    mellomkollenMarker1 = {routesData.features[1].geometry.coordinates}
-                    mellomkollenWater = {routesData.features[8].geometry.coordinates}
-                    helvetebrua = {routesData.features[2]}
-                    helvetebruaMarker1 = {routesData.features[3].geometry.coordinates}
-                    helvetebruaMarker2 = {routesData.features[4].geometry.coordinates}
-                    helvetebruaMarkerView = {routesData.features[5].geometry.coordinates}
-                    helvetebruaMarkerWC = {routesData.features[6].geometry.coordinates}
+                   selectedMapLayer = {this.state.selectedMapLayer}
                   />
                   
                   <Footer />

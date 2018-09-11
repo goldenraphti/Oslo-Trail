@@ -1,30 +1,19 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import ReactDOM from 'react-dom'
 import L from 'leaflet';
 import { Map,
-    Circle,
-    Polyline,
     FeatureGroup,
     LayerGroup,
     LayersControl,
     Marker,
     Popup,
-    Rectangle,
     TileLayer,
-    GeoJSON} from 'react-leaflet'
+    GeoJSON,
+       ZoomControl} from 'react-leaflet'
 import Leaflet from 'leaflet'
-import { Polyline as LeafletPolyline } from 'leaflet'
 // in the markers use "iconStart" for the start marker icon, and "iconFinish" for the finish marker icon
 import {  iconStart, iconFinish,iconWater, iconWC , iconViewPoint  } from './Icons';
 
-
-
 const { BaseLayer, Overlay } = LayersControl
-
-// not sure if useful so far
-Leaflet.Icon.Default.imagePath =
-'//cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/images/'
 
 
 
@@ -36,18 +25,6 @@ export default class MapUI extends Component {
         lat: 59.913868,
         lng: 10.752245,
         zoom: 10,
-      },
-      routes: {
-          route1 : {
-              name: 'Tour of Mellomkollen',
-              start: 'Skar',
-              startLat: 60.026707,
-              startLong: 10.779335,
-              end: 'Skar',
-              distance: 6.5,
-              climb: 350,
-              type: 'loop',
-          }
       },
       
   }
@@ -74,7 +51,11 @@ export default class MapUI extends Component {
             return iconViewPoint;
         } 
     }
-
+    
+    expandToolPanel = () => {
+        const toolPanel = document.getElementById('catalog-panel');
+        toolPanel.getAttribute('class') !== 'hidden' ? toolPanel.setAttribute('class','hidden'): toolPanel.removeAttribute('class','hidden');
+    }
 
   render() {
       
@@ -118,9 +99,15 @@ export default class MapUI extends Component {
         
           <div id="map-form-container">
 
-                <Map center={position} zoom={this.state.initialView.zoom} id="map-container">
+               {/* if want to hide the automatic leaflet zoom control: add "zoomControl= curlybrace false closecurlybrace" */}
+                <Map center={position} zoom={this.state.initialView.zoom} id="map-container" >
                 
-               <LayersControl position="topright">
+                <button id="tool-button" onClick={ e => this.expandToolPanel()} ></button>
+                
+                    {/* <ZoomControl position="topright" /> */}
+                
+                
+               <LayersControl position="bottomright">
                  
                   <BaseLayer checked name={layers.landscape.nameTile}>
                     <TileLayer
@@ -150,7 +137,6 @@ export default class MapUI extends Component {
                     ))}
               
               
-                  <Overlay name="Start/Finish">
                    
                     {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerStart' || marker.properties.markerType === 'markerFinish' ).map( (marker) => (
                         <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
@@ -162,9 +148,6 @@ export default class MapUI extends Component {
                         </Marker>
                     ))}
                     
-                    </ Overlay>
-                    
-                   <Overlay name="Point to refill water">
                    
                     {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerWater' ).map( (marker) => (
                         <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
@@ -175,8 +158,6 @@ export default class MapUI extends Component {
                               >
                         </Marker>
                     ))}
-                  </Overlay>
-                  <Overlay name="WC">
                    
                     {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerWC' ).map( (marker) => (
                         <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
@@ -187,8 +168,6 @@ export default class MapUI extends Component {
                               >
                         </Marker>
                     ))}
-                  </Overlay>
-                  <Overlay name="View points">
                    
                     {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerViewPoint' ).map( (marker) => (
                         <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
@@ -199,13 +178,12 @@ export default class MapUI extends Component {
                               >
                         </Marker>
                     ))}
-                  </Overlay>
               
               
                 </LayersControl>
             </Map>
             
-              <form id="catalog-panel">
+              <form id="catalog-panel" className="hidden">
               
                    <div id="filters form-section">
                         <h2>Filters</h2>
@@ -214,7 +192,7 @@ export default class MapUI extends Component {
                           <h3>Distance (km)</h3>
                            <div className="range-slider-column">
                               <span className="range-input-value" id="span-value-input-distance">-</span>
-                               <input  onChange={e => this.props.updateVal(e.target)} className="range-slider__range"  id="input-distance" type="range" min="0" max="100" step="5"></input>
+                               <input  onChange={e => this.props.updateVal(e.target)} className="range-slider__range"  id="input-distance" type="range" min="0" max="150" step="5"></input>
                            </div>
                         </div>
               
@@ -230,12 +208,12 @@ export default class MapUI extends Component {
                           <h3>Type of route</h3>
                             <div className="checkbox-column">
                                 <div className="checkbox-div">
-                                   <label>Loop</label>
                                     <input  onChange={e => this.props.updateVal(e.target)} className="" id="input-loop"  type="checkbox" checked={this.props.filterLoop} title="loop"></input>
+                                   <label>Loop</label>
                                 </div>
                                   <div className="checkbox-div">
-                                   <label>Traversee</label>
                                     <input  onChange={e => this.props.updateVal(e.target)} className="" id="input-traversee"  type="checkbox" checked={this.props.filterTraversee}  title="traversee"></input>
+                                   <label>Traversee</label>
                                 </div>
                             </div>
                         </div> 
