@@ -52,9 +52,19 @@ export default class MapUI extends Component {
         } 
     }
     
-    expandToolPanel = () => {
+    expandToolPanel = (e) => {
+        e.preventDefault();
         const toolPanel = document.getElementById('catalog-panel');
-        toolPanel.getAttribute('class') !== 'hidden' ? toolPanel.setAttribute('class','hidden'): toolPanel.removeAttribute('class','hidden');
+        if (toolPanel.hasAttribute('class', 'hidden')) {
+            toolPanel.removeAttribute('class','hidden') ;
+            document.getElementById('open-tool-button').classList.add('hidden')
+            document.getElementById('close-tool-button').classList.remove('hidden')
+        }else {
+            toolPanel.setAttribute('class','hidden')
+            document.getElementById('open-tool-button').classList.remove('hidden')
+            document.getElementById('close-tool-button').classList.add('hidden')
+        };
+        console.log(document.getElementById('open-tool-button').getAttribute('class'), document.getElementById('close-tool-button').getAttribute('class'))
     }
 
   render() {
@@ -102,7 +112,8 @@ export default class MapUI extends Component {
                {/* if want to hide the automatic leaflet zoom control: add "zoomControl= curlybrace false closecurlybrace" */}
                 <Map center={position} zoom={this.state.initialView.zoom} id="map-container" >
                 
-                <button id="tool-button" onClick={ e => this.expandToolPanel()} ></button>
+                <button id="open-tool-button" className="tool-button" onClick={ e => this.expandToolPanel(e)} >
+                </button>
                 
                     {/* <ZoomControl position="topright" /> */}
                 
@@ -184,49 +195,59 @@ export default class MapUI extends Component {
             </Map>
             
               <form id="catalog-panel" className="hidden">
+                
+                <div id="tool-icons-column">
+                    <button id="close-tool-button" className="tool-button" onClick={ e => this.expandToolPanel(e)} ></button>
+                    <button id="search-tool-button" className="tool-button" ></button>
+                    <button id="layers-tool-button" className="tool-button" ></button>
+                    <button id="filters-tool-button" className="tool-button" ></button>
+                    <button id="markers-tool-button" className="tool-button" ></button>
+                </div>
               
-                   <div id="filters form-section">
-                        <h2>Filters</h2>
-                      
-                       <div className="filter-div range-slider">
-                          <h3>Distance (km)</h3>
-                           <div className="range-slider-column">
-                              <span className="range-input-value" id="span-value-input-distance">-</span>
-                               <input  onChange={e => this.props.updateVal(e.target)} className="range-slider__range"  id="input-distance" type="range" min="0" max="150" step="5"></input>
-                           </div>
-                        </div>
-              
-                        <div className="filter-div range-slider">
-                          <h3>Climb (m+)</h3>
-                           <div className="range-slider-column">
-                               <span className="range-input-value" id="span-value-input-climb">-</span>
-                                <input  onChange={e => this.props.updateVal(e.target)} className="range-slider__range"  id="input-climb" type="range" min="0" max="3000" step="10"></input>
+                   <div id="content-tool-panel">
+                       <div id="filters form-section">
+                            <h2>Filters</h2>
+                          
+                           <div className="filter-div range-slider">
+                              <h3>Distance (km)</h3>
+                               <div className="range-slider-column">
+                                  <span className="range-input-value" id="span-value-input-distance">-</span>
+                                   <input  onChange={e => this.props.updateVal(e.target)} className="range-slider__range"  id="input-distance" type="range" min="0" max="150" step="5"></input>
+                               </div>
                             </div>
-                        </div>
-              
-                        <div className="filter-div checkbox-container">
-                          <h3>Type of route</h3>
-                            <div className="checkbox-column">
-                                <div className="checkbox-div">
-                                    <input  onChange={e => this.props.updateVal(e.target)} className="" id="input-loop"  type="checkbox" checked={this.props.filterLoop} title="loop"></input>
-                                   <label>Loop</label>
-                                </div>
-                                  <div className="checkbox-div">
-                                    <input  onChange={e => this.props.updateVal(e.target)} className="" id="input-traversee"  type="checkbox" checked={this.props.filterTraversee}  title="traversee"></input>
-                                   <label>Traversee</label>
+                                     
+                            <div className="filter-div range-slider">
+                              <h3>Climb (m+)</h3>
+                               <div className="range-slider-column">
+                                   <span className="range-input-value" id="span-value-input-climb">-</span>
+                                    <input  onChange={e => this.props.updateVal(e.target)} className="range-slider__range"  id="input-climb" type="range" min="0" max="3000" step="10"></input>
                                 </div>
                             </div>
-                        </div> 
+                                     
+                            <div className="filter-div checkbox-container">
+                              <h3>Type of route</h3>
+                                <div className="checkbox-column">
+                                    <div className="checkbox-div">
+                                        <input  onChange={e => this.props.updateVal(e.target)} className="" id="input-loop"  type="checkbox" checked={this.props.filterLoop} title="loop"></input>
+                                       <label>Loop</label>
+                                    </div>
+                                      <div className="checkbox-div">
+                                        <input  onChange={e => this.props.updateVal(e.target)} className="" id="input-traversee"  type="checkbox" checked={this.props.filterTraversee}  title="traversee"></input>
+                                       <label>Traversee</label>
+                                    </div>
+                                </div>
+                            </div> 
+                       </div>
+                        <div id="list-routes" className="form-section">
+                            <h2>Routes list</h2>
+                            <ul>
+                                {this.props.listToDisplay.filter(route => route.properties.featureType === 'route' ).map( (route) => (
+                                    <li key={route.properties.name} onClick={e => this.props.selectRoute(route.properties.route)}><button type="button" href="#">{route.properties.route}</button></li>
+                                ))}
+                            </ul>
+                            <div id="clear-filters" className="link" role="button" onClick={e => this.props.clearFilters()} ><button type="button">Show all routes</button></div>
+                        </div>
                    </div>
-                    <div id="list-routes" className="form-section">
-                        <h2>Routes list</h2>
-                        <ul>
-                            {this.props.listToDisplay.filter(route => route.properties.featureType === 'route' ).map( (route) => (
-                                <li key={route.properties.name} onClick={e => this.props.selectRoute(route.properties.route)}><button type="button" href="#">{route.properties.route}</button></li>
-                            ))}
-                        </ul>
-                        <div id="clear-filters" className="link" role="button" onClick={e => this.props.clearFilters()} ><button type="button">Show all routes</button></div>
-                    </div>
               </form>
             
           </div>

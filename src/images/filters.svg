@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="16.2875mm"
+   height="16.816666mm"
+   viewBox="0 0 16.2875 16.816666"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="filters.svg"
+   inkscape:export-filename="/home/rf/Documents/Webdesign-2018/oslo-trail-klubb/graphic-resources/icons/close.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   inkscape:version="0.92.3 (d244b95, 2018-08-02)">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="0.96855155"
+     inkscape:cy="-32.038432"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g4623"
+     showgrid="false"
+     fit-margin-top="1"
+     fit-margin-left="1"
+     fit-margin-right="1"
+     fit-margin-bottom="1"
+     inkscape:window-width="1280"
+     inkscape:window-height="996"
+     inkscape:window-x="1366"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-95.50438,-106.99509)">
+    <g
+       id="g841"
+       transform="matrix(0.26458333,0,0,0.26458333,95.394576,111.55991)">
+      <g
+         id="g4623"
+         transform="translate(4.1945349,-13.473322)">
+        <g
+           id="g4603">
+          <path
+             id="path4597"
+             d="m 7,14 c 3.52,0 6.43,-2.61 6.92,-6 H 53 C 53.55,8 54,7.55 54,7 54,6.45 53.55,6 53,6 H 13.92 C 13.43,2.61 10.52,0 7,0 3.14,0 0,3.14 0,7 c 0,3.86 3.14,7 7,7 z M 7,2 c 2.76,0 5,2.24 5,5 0,2.76 -2.24,5 -5,5 C 4.24,12 2,9.76 2,7 2,4.24 4.24,2 7,2 Z"
+             inkscape:connector-curvature="0" />
+          <path
+             id="path4599"
+             d="m 47,42 c -3.52,0 -6.43,2.61 -6.92,6 H 1 c -0.55,0 -1,0.45 -1,1 0,0.55 0.45,1 1,1 h 39.08 c 0.49,3.39 3.4,6 6.92,6 3.86,0 7,-3.14 7,-7 0,-3.86 -3.14,-7 -7,-7 z m 0,12 c -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 0,2.76 -2.24,5 -5,5 z"
+             inkscape:connector-curvature="0" />
+          <path
+             id="path4601"
+             d="M 53,27 H 34.37 c -0.4,-3.6 -3.46,-6.41 -7.16,-6.41 -3.71,0 -6.76,2.81 -7.16,6.41 H 1 c -0.55,0 -1,0.45 -1,1 0,0.55 0.45,1 1,1 h 19.11 c 0.58,3.4 3.54,6 7.1,6 3.56,0 6.52,-2.6 7.1,-6 H 53 c 0.55,0 1,-0.45 1,-1 0,-0.55 -0.45,-1 -1,-1 z M 27.21,33 C 24.34,33 22,30.66 22,27.79 c 0,-2.87 2.34,-5.21 5.21,-5.21 2.87,0 5.21,2.34 5.21,5.21 0,2.87 -2.34,5.21 -5.21,5.21 z"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

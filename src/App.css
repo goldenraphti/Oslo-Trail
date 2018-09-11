@@ -66,6 +66,7 @@ ul {
     --palette-1-1: #2d4059;
     --palette-1-2: #ea5455;
     --palette-1-3: #f07b3f;
+    --palette-1-3-light: #f7b593;
     --palette-1-4: #ffd460;
     
     --navbar-height: 50px;
@@ -191,26 +192,71 @@ nav a {
     flex-direction: column;
 }
 
-#tool-button {
-    background: url(images/map-settings.svg) var(--palette-1-3) center;
+.tool-button {
     background-size: 35px 35px; 
-    width: 50px;
-    height: 50px;
+    background-position: center;
+    background-color:  var(--palette-1-3);
+    width: 75px;
+    height: 75px;
     z-index: 500;
     background-repeat: no-repeat;
-    border: solid 1px var(--medium-grey);
-    border-radius: 2px;
-    box-shadow: 0 0 6px 0px var(--medium-grey);
-    position: absolute;
-    top:2vh;
-    right: 2vh;
+    top:0;
+    right: 0;
 }
 
-#tool-button:hover {
-    background: url(images/map-settings.svg) var(--light-grey) center;
-    background-size: 35px 35px; 
-    background-repeat: no-repeat;
+.tool-button:hover {
+    background-color: var(--palette-1-3-light)
 }
+
+#open-tool-button {
+    background-image: url(images/map-settings.svg);
+    box-shadow: 0 0 6px 0px var(--medium-grey);
+    position: absolute;
+    border: solid 1px var(--medium-grey);
+}
+
+#tool-icons-column {
+    position: absolute;
+    top: var(--navbar-height);
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: calc(100vh - var(--navbar-height));
+    background: var(--palette-1-3);
+    border-left: solid 1px var(--dark-grey);
+}
+
+#tool-icons-column .tool-button {
+    border: none;
+    border-top: solid 1px var(--dark-grey);
+}
+
+#close-tool-button {
+    background-image: url(images/close.svg);
+}
+
+#search-tool-button {
+    background-image: url(images/search-tool.svg);
+}
+
+#layers-tool-button {
+    background-image: url(images/map-layers-2.svg);
+}
+
+#filters-tool-button {
+    background-image: url(images/filters.svg);
+}
+
+#tool-icons-column > button:last-of-type {
+    border-bottom: solid 1px var(--dark-grey);
+}
+
+#markers-tool-button {
+    background-image: url(images/markers.svg);
+}
+
+
 
 #map-form-container {
     min-width: 100vw;
@@ -239,11 +285,16 @@ footer {
     text-align: center;
 }
 
+#content-tool-panel {
+    padding-right: 80px;
+}
+
 form#catalog-panel {
     z-index: 500;
-    right: 0;
-    width: 20vw;
-    height: calc( 100vh - var(--navbar-height));
+    right: 0px;
+    bottom: 0px;
+    width: 35vw;
+    height: calc( 100vh - var(--navbar-height) );
     color: var(--dark-grey);
     background: var(--light-grey);
     opacity: 1;
@@ -375,8 +426,8 @@ footer a:hover {
 
 
 .leaflet-bar a:hover {
-    background-color: var(--medium-grey);
-    color: #fff;
+    background-color:  var(--palette-1-3-light);
+    color: var(--dark-grey);
     border-bottom: 1px solid var(--dark-grey);
 }
 
