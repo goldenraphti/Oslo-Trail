@@ -64,7 +64,23 @@ export default class MapUI extends Component {
             document.getElementById('open-tool-button').classList.remove('hidden')
             document.getElementById('close-tool-button').classList.add('hidden')
         };
-        console.log(document.getElementById('open-tool-button').getAttribute('class'), document.getElementById('close-tool-button').getAttribute('class'))
+    }
+    
+    expandToolSection = (e) => {
+        e.preventDefault();
+        // hides the previously displayed form-section
+        const formSectionAll = document.getElementsByClassName('form-section-hideable');
+        for (const section of formSectionAll) {
+            section.classList.contains('hidden') ? null : section.classList.add('hidden');
+        }
+        // takes the id of the button clicked
+        const buttonID = e.target.id;
+        // cleans the button ID to keep ony the first word so can add container to it and then use it directly inb literal expression
+//        let containerID = buttonID.slice(0, -11).
+        const suffix = '-container';
+        let containerID = buttonID.split('-')[0].concat(suffix);
+        document.getElementById(containerID).classList.remove('hidden');
+        
     }
 
   render() {
@@ -194,18 +210,22 @@ export default class MapUI extends Component {
                 </LayersControl>
             </Map>
             
-              <form id="catalog-panel" className="hidden">
+
                 
+           <form id="catalog-panel" className="hidden">
                 <div id="tool-icons-column">
                     <button id="close-tool-button" className="tool-button" onClick={ e => this.expandToolPanel(e)} ></button>
-                    <button id="search-tool-button" className="tool-button" ></button>
-                    <button id="layers-tool-button" className="tool-button" ></button>
-                    <button id="filters-tool-button" className="tool-button" ></button>
-                    <button id="markers-tool-button" className="tool-button" ></button>
+                    <button id="search-tool-button" className="tool-button" onClick={ e => this.expandToolSection(e)}  ></button>
+                    <button id="layers-tool-button" className="tool-button"  onClick={ e => this.expandToolSection(e)}  ></button>
+                    <button id="filters-tool-button" className="tool-button" onClick={ e => this.expandToolSection(e)} ></button>
+                    <button id="markers-tool-button" className="tool-button" onClick={ e => this.expandToolSection(e)}  ></button>
                 </div>
-              
                    <div id="content-tool-panel">
-                       <div id="filters form-section">
+                      <div id="search-container" className="form-section form-section-hideable hidden">
+                       </div>
+                       <div id="layers-container" className="form-section form-section-hideable hidden">
+                       </div>
+                       <div id="filters-container" className="form-section form-section-hideable hidden">
                             <h2>Filters</h2>
                           
                            <div className="filter-div range-slider">
@@ -235,6 +255,40 @@ export default class MapUI extends Component {
                                         <input  onChange={e => this.props.updateVal(e.target)} className="" id="input-traversee"  type="checkbox" checked={this.props.filterTraversee}  title="traversee"></input>
                                        <label>Traversee</label>
                                     </div>
+                                </div>
+                            </div> 
+                       </div>
+                       <div id="markers-container" className="form-section form-section-hideable hidden">
+                            <h2>Markers</h2>
+                            
+                            <div className="markers-checkbox-container">
+                                <div className="checkbox-row">
+                                   <div class="marker-checkbox-description">
+                                       <img src={require('./images/start-finish-tool-colored.svg')} alt=""/>
+                                       <p id="start-finish-description">Start/Finish</p>
+                                   </div>
+                                    <input aria-labelledby="start-finish-description" onChange={e => this.props.updateValMarker(e.target)} className="" id="input-marker-start-finish"  type="checkbox" checked={this.props.markerStartFinish}></input>
+                                </div>
+                                <div className="checkbox-row">
+                                   <div class="marker-checkbox-description">
+                                       <img src={require('./images/water-tool-colored.svg')} alt=""/>
+                                       <p id="water-description">Drinkable water</p>
+                                   </div>
+                                    <input aria-labelledby="water-description" onChange={e => this.props.updateValMarker(e.target)} className="" id="input-marker-water"  type="checkbox" checked={this.props.markerWater}></input>
+                                </div>
+                                <div className="checkbox-row">
+                                   <div class="marker-checkbox-description">
+                                       <img src={require('./images/wc-tool-colored.svg')} alt=""/>
+                                       <p id="wc-description">WC</p>
+                                   </div>
+                                    <input aria-labelledby="wc-description" onChange={e => this.props.updateValMarker(e.target)} className="" id="input-marker-wc"  type="checkbox" checked={this.props.markerWC}></input>
+                                </div>
+                                <div className="checkbox-row">
+                                   <div class="marker-checkbox-description">
+                                       <img src={require('./images/view-point-tool-colored.svg')} alt=""/>
+                                       <p id="view-points-description">View Points</p>
+                                   </div>
+                                    <input aria-labelledby="view-points-description" onChange={e => this.props.updateValMarker(e.target)} className="" id="input-marker-view-point"  type="checkbox" checked={this.props.markerViewPoint}></input>
                                 </div>
                             </div> 
                        </div>

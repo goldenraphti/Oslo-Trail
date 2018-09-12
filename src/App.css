@@ -32,7 +32,7 @@ body {
     padding: 0;
     min-height: 100vh;
     height:100%;
-    font-family: source-sans-pro, sans-serif;
+    font-family: source-sans-pro, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 nav a,
@@ -70,6 +70,7 @@ ul {
     --palette-1-4: #ffd460;
     
     --navbar-height: 50px;
+    --tool-buttons-height-width: 75px;
     
 }
 
@@ -90,12 +91,17 @@ button {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 h1 {
     font-family: 'Vesper Libre', serif;
     font-size: 5em;
+    letter-spacing: 0.1em;
+}
+
+h2 {
+    font-size: 1.5em;
     letter-spacing: 0.1em;
 }
 
@@ -196,8 +202,8 @@ nav a {
     background-size: 35px 35px; 
     background-position: center;
     background-color:  var(--palette-1-3);
-    width: 75px;
-    height: 75px;
+    width: var(--tool-buttons-height-width);
+    height: var(--tool-buttons-height-width);
     z-index: 500;
     background-repeat: no-repeat;
     top:0;
@@ -224,12 +230,10 @@ nav a {
     justify-content: flex-start;
     height: calc(100vh - var(--navbar-height));
     background: var(--palette-1-3);
-    border-left: solid 1px var(--dark-grey);
 }
 
 #tool-icons-column .tool-button {
     border: none;
-    border-top: solid 1px var(--dark-grey);
 }
 
 #close-tool-button {
@@ -247,16 +251,9 @@ nav a {
 #filters-tool-button {
     background-image: url(images/filters.svg);
 }
-
-#tool-icons-column > button:last-of-type {
-    border-bottom: solid 1px var(--dark-grey);
-}
-
 #markers-tool-button {
     background-image: url(images/markers.svg);
 }
-
-
 
 #map-form-container {
     min-width: 100vw;
@@ -286,23 +283,38 @@ footer {
 }
 
 #content-tool-panel {
-    padding-right: 80px;
+    padding-right: none;
 }
 
 form#catalog-panel {
     z-index: 500;
     right: 0px;
     bottom: 0px;
-    width: 35vw;
+    min-width: 350px;
     height: calc( 100vh - var(--navbar-height) );
-    color: var(--dark-grey);
-    background: var(--light-grey);
+    overflow-y: scroll;
     opacity: 1;
     box-shadow: -7px 0 10px -10px var(--medium-grey);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    margin: none;
+    padding-right: var(--tool-buttons-height-width);
+    color: var(--dark-grey);
+    background: var(--light-grey);
+/*
+    background: var(--palette-1-3-light);
+*/
+/*
+    color: #fff;
+    background: var(--medium-grey);
+*/
 }
 
-form#catalog-panel .form-section{
-    margin: 50px 0;
+form#catalog-panel .form-section {
+    margin: none;
+    padding: none;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -362,8 +374,27 @@ form#catalog-panel h3 {
     align-items: center;
     margin: 0;
     padding: 0;
-    line-height: 0;
     font-size: 0.8em;
+}
+
+.checkbox-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+}
+
+.marker-checkbox-description {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-right: 20px;
+}
+
+.marker-checkbox-description img {
+    width: 30px;
+    margin-right: 20px;
 }
 
 form#catalog-panel #list-routes ul li {
@@ -373,8 +404,10 @@ form#catalog-panel #list-routes ul li {
 
 form#catalog-panel #list-routes ul li button {
     padding: none;
+    margin: none;
     background: none;
     border: none;
+    min-height: 30px;
 }
 
 form#catalog-panel #clear-filters button {
@@ -413,6 +446,7 @@ footer a:hover {
 
 .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
     border: 1px solid var(--dark-grey);
+    border-radius: 2px;
 }
 
 .leaflet-bar a, .leaflet-bar a:hover {

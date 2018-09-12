@@ -20,6 +20,10 @@ class Catalog extends Component {
         // filter false means the user does not want this type of route in the list
         filterLoop:true,
         filterTraversee:true,
+        markerStartFinish: true,
+        markerWater: false,
+        markerWC: false,
+        markerViewPoint: false,
         selectedRoute: null,
         selectedMapLayer: 'landscape'
     }
@@ -100,15 +104,19 @@ class Catalog extends Component {
                 <Navbar />
                
                 <MapUI
-                   listToDisplay = {this.state.listToDisplay}
-                   markersListToDisplay = {this.state.markersListToDisplay}
+                    listToDisplay = {this.state.listToDisplay}
+                    markersListToDisplay = {this.state.markersListToDisplay}
                     filterLoop = {this.state.filterLoop}
                     filterTraversee = {this.state.filterTraversee}
-                   updateVal = {this.updateVal}
-                   selectRoute = {this.selectRoute}
-                   clearFilters = {this.clearFilters}
-                   selectedMapLayer = {this.state.selectedMapLayer}
-                  />
+                    updateVal = {this.updateVal}
+                    markerStartFinish = {this.state.markerStartFinish}
+                    markerWater = {this.state.markerWater}
+                    markerWC = {this.state.markerWC}
+                    markerViewPoint = {this.state.markerViewPoint}
+                    selectRoute = {this.selectRoute}
+                    clearFilters = {this.clearFilters}
+                    selectedMapLayer = {this.state.selectedMapLayer}
+                />
                   
                   <Footer />
                 
