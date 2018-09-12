@@ -15,6 +15,7 @@ class Catalog extends Component {
     
     state = {
         listToDisplay : routesData.features,
+        layer: 'landscape',
         filterDistance:null,
         filterClimb:null,
         // filter false means the user does not want this type of route in the list
@@ -35,6 +36,12 @@ class Catalog extends Component {
     // when component mount, import all routesData to listToDisplay, before being filtered
     retrieveRoutesData() {
         this.setState({listToDisplay: routesData.features})
+    }
+
+    updateLayer = (value) => {
+        this.setState({layer: value});
+        
+        console.log(this.state.layer);
     }
 
     updateVal = (e) => {
@@ -108,6 +115,8 @@ class Catalog extends Component {
                     markersListToDisplay = {this.state.markersListToDisplay}
                     filterLoop = {this.state.filterLoop}
                     filterTraversee = {this.state.filterTraversee}
+                    layer = {this.state.layer}
+                    updateLayer = {this.updateLayer}
                     updateVal = {this.updateVal}
                     markerStartFinish = {this.state.markerStartFinish}
                     markerWater = {this.state.markerWater}

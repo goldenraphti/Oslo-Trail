@@ -67,6 +67,8 @@ ul {
     --palette-1-2: #ea5455;
     --palette-1-3: #f07b3f;
     --palette-1-3-light: #f7b593;
+    --palette-1-3-medium: #b15627;
+    --palette-1-3-dark: #843c17;
     --palette-1-4: #ffd460;
     
     --navbar-height: 50px;
@@ -238,6 +240,11 @@ nav a {
 
 #close-tool-button {
     background-image: url(images/close.svg);
+    background-color: var(--palette-1-3-medium);
+}
+
+#close-tool-button:hover {
+    background-color: var(--palette-1-3-dark);
 }
 
 #search-tool-button {

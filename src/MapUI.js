@@ -138,20 +138,8 @@ export default class MapUI extends Component {
                  
                   <BaseLayer checked name={layers.landscape.nameTile}>
                     <TileLayer
-                      attribution={layers.landscape.attribution}
-                      url={layers.landscape.url}
-                    />
-                  </BaseLayer>
-                  <BaseLayer name={layers.outdoors.nameTile}>
-                    <TileLayer
-                      attribution={layers.outdoors.attribution}
-                      url={layers.outdoors.url}
-                    />
-                  </BaseLayer>
-                  <BaseLayer name={layers.transport.nameTile}>
-                    <TileLayer
-                      attribution={layers.transport.attribution}
-                      url={layers.transport.url}
+                      attribution="Maps <a href=&quot;http://www.thunderforest.com/&quot;>Thunderforest</a>, Data <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                      url={`https://tile.thunderforest.com/${this.props.layer}/{z}/{x}/{y}.png?apikey=dcc7bcce19df4c7e9537813bd66c45b5`}
                     />
                   </BaseLayer>
                     
@@ -210,8 +198,6 @@ export default class MapUI extends Component {
                 </LayersControl>
             </Map>
             
-
-                
            <form id="catalog-panel" className="hidden">
                 <div id="tool-icons-column">
                     <button id="close-tool-button" className="tool-button" onClick={ e => this.expandToolPanel(e)} ></button>
@@ -222,8 +208,30 @@ export default class MapUI extends Component {
                 </div>
                    <div id="content-tool-panel">
                       <div id="search-container" className="form-section form-section-hideable hidden">
+                            <h2>Search</h2>
                        </div>
                        <div id="layers-container" className="form-section form-section-hideable hidden">
+                            <h2>Map layer</h2>
+                            <div id="layers-radiobox-container">
+                                <div className="radiobox-row">
+                                    <div className="checkbox-div">
+                                       <label>Landscape</label>
+                                        <input type="radio" id="landscape-checkbox" value="landscape" name="layer-checkbox" onChange={e => this.props.updateLayer(e.target.value)} />
+                                    </div>
+                                </div>
+                                <div className="radiobox-row">
+                                    <div className="checkbox-div">
+                                       <label>Outdoors</label>
+                                        <input type="radio" id="outdoors-checkbox" value="outdoors" name="layer-checkbox" onChange={e => this.props.updateLayer(e.target.value)} />
+                                    </div>
+                                </div>
+                                <div className="radiobox-row">
+                                    <div className="checkbox-div">
+                                       <label>Transport</label>
+                                        <input type="radio" id="transport-checkbox" value="transport" name="layer-checkbox" onChange={e => this.props.updateLayer(e.target.value)} />
+                                    </div>
+                                </div>
+                            </div>
                        </div>
                        <div id="filters-container" className="form-section form-section-hideable hidden">
                             <h2>Filters</h2>
@@ -232,7 +240,7 @@ export default class MapUI extends Component {
                               <h3>Distance (km)</h3>
                                <div className="range-slider-column">
                                   <span className="range-input-value" id="span-value-input-distance">-</span>
-                                   <input  onChange={e => this.props.updateVal(e.target)} className="range-slider__range"  id="input-distance" type="range" min="0" max="150" step="5"></input>
+                                   <input onChange={e => this.props.updateVal(e.target)} className="range-slider__range"  id="input-distance" type="range" min="0" max="150" step="5"></input>
                                </div>
                             </div>
                                      
@@ -240,7 +248,7 @@ export default class MapUI extends Component {
                               <h3>Climb (m+)</h3>
                                <div className="range-slider-column">
                                    <span className="range-input-value" id="span-value-input-climb">-</span>
-                                    <input  onChange={e => this.props.updateVal(e.target)} className="range-slider__range"  id="input-climb" type="range" min="0" max="3000" step="10"></input>
+                                    <input onChange={e => this.props.updateVal(e.target)} className="range-slider__range"  id="input-climb" type="range" min="0" max="3000" step="10"></input>
                                 </div>
                             </div>
                                      
@@ -248,11 +256,11 @@ export default class MapUI extends Component {
                               <h3>Type of route</h3>
                                 <div className="checkbox-column">
                                     <div className="checkbox-div">
-                                        <input  onChange={e => this.props.updateVal(e.target)} className="" id="input-loop"  type="checkbox" checked={this.props.filterLoop} title="loop"></input>
+                                        <input onChange={e => this.props.updateVal(e.target)} className="" id="input-loop"  type="checkbox" checked={this.props.filterLoop} title="loop"></input>
                                        <label>Loop</label>
                                     </div>
                                       <div className="checkbox-div">
-                                        <input  onChange={e => this.props.updateVal(e.target)} className="" id="input-traversee"  type="checkbox" checked={this.props.filterTraversee}  title="traversee"></input>
+                                        <input onChange={e => this.props.updateVal(e.target)} className="" id="input-traversee"  type="checkbox" checked={this.props.filterTraversee}  title="traversee"></input>
                                        <label>Traversee</label>
                                     </div>
                                 </div>
@@ -263,28 +271,28 @@ export default class MapUI extends Component {
                             
                             <div className="markers-checkbox-container">
                                 <div className="checkbox-row">
-                                   <div class="marker-checkbox-description">
+                                   <div className="marker-checkbox-description">
                                        <img src={require('./images/start-finish-tool-colored.svg')} alt=""/>
                                        <p id="start-finish-description">Start/Finish</p>
                                    </div>
                                     <input aria-labelledby="start-finish-description" onChange={e => this.props.updateValMarker(e.target)} className="" id="input-marker-start-finish"  type="checkbox" checked={this.props.markerStartFinish}></input>
                                 </div>
                                 <div className="checkbox-row">
-                                   <div class="marker-checkbox-description">
+                                   <div className="marker-checkbox-description">
                                        <img src={require('./images/water-tool-colored.svg')} alt=""/>
                                        <p id="water-description">Drinkable water</p>
                                    </div>
                                     <input aria-labelledby="water-description" onChange={e => this.props.updateValMarker(e.target)} className="" id="input-marker-water"  type="checkbox" checked={this.props.markerWater}></input>
                                 </div>
                                 <div className="checkbox-row">
-                                   <div class="marker-checkbox-description">
+                                   <div className="marker-checkbox-description">
                                        <img src={require('./images/wc-tool-colored.svg')} alt=""/>
                                        <p id="wc-description">WC</p>
                                    </div>
                                     <input aria-labelledby="wc-description" onChange={e => this.props.updateValMarker(e.target)} className="" id="input-marker-wc"  type="checkbox" checked={this.props.markerWC}></input>
                                 </div>
                                 <div className="checkbox-row">
-                                   <div class="marker-checkbox-description">
+                                   <div className="marker-checkbox-description">
                                        <img src={require('./images/view-point-tool-colored.svg')} alt=""/>
                                        <p id="view-points-description">View Points</p>
                                    </div>
