@@ -71,7 +71,6 @@ class Catalog extends Component {
     // hides or display corresponding markers types when check or uncheck checkobox in tool panel Markers
      updateValMarker = (value) => {
          this.state[value] === true ? this.setState({ [value] : false }) : this.setState({ [value] : true });
-         console.log(this.state);
      }
             
     // modify listToDisplay after user have clicked on a route in list
@@ -85,27 +84,6 @@ class Catalog extends Component {
     
     clearFilters = () => {
         this.setState({listToDisplay: routesData.features});
-    }
-
-
-    //list of map layers ( TO BE REFACTORED AND ADDED DYNAMICALLY)
-    layers = {
-        landscape: {
-            nameTile: 'landscape',
-            url: 'https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=dcc7bcce19df4c7e9537813bd66c45b5',
-            attribution : "Maps <a href=&quot;http://www.thunderforest.com/&quot;>Thunderforest</a>, Data <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors",
-            initiallyChecked :true
-        },
-        outdoors: {
-            nameTile: 'outdoors',
-            url: 'https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=dcc7bcce19df4c7e9537813bd66c45b5',
-            attribution : "Maps <a href=&quot;http://www.thunderforest.com/&quot;>Thunderforest</a>, Data <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-        },
-        transport: {
-            nameTile: 'transport',
-            url: 'https://tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=dcc7bcce19df4c7e9537813bd66c45b5',
-            attribution : "Maps <a href=&quot;http://www.thunderforest.com/&quot;>Thunderforest</a>, Data <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-        },
     }
     
     render() {

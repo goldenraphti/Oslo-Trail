@@ -39,15 +39,15 @@ export default class MapUI extends Component {
 
     iconToDisplay = (marker) => {
         
-        if( marker.marker.properties.markerType === 'markerStart') {
+        if( marker.marker.properties.markerIcon === 'markerStart') {
             return iconStart;
-        } else if( marker.marker.properties.markerType === 'markerFinish') {
+        } else if( marker.marker.properties.markerIcon === 'markerFinish') {
             return iconFinish;
-        } else if( marker.marker.properties.markerType === 'markerWC') {
+        } else if( marker.marker.properties.markerIcon === 'markerWC') {
             return iconWC;
-        } else if( marker.marker.properties.markerType === 'markerWater') {
+        } else if( marker.marker.properties.markerIcon === 'markerWater') {
             return iconWater;
-        } else if( marker.marker.properties.markerType === 'markerViewPoint') {
+        } else if( marker.marker.properties.markerIcon === 'markerViewPoint') {
             return iconViewPoint;
         } 
     }
@@ -86,102 +86,41 @@ export default class MapUI extends Component {
   render() {
       
       // gives the initial view
-    const position = [this.state.initialView.lat, this.state.initialView.lng]
+      const position = [this.state.initialView.lat, this.state.initialView.lng]
     
-    //list of map layers ( TO BE REFACTORED AND ADDED DYNAMICALLY)
-    const layers = {
-        landscape: {
-            nameTile: 'landscape',
-            url: 'https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=dcc7bcce19df4c7e9537813bd66c45b5',
-            attribution : "Maps <a href=&quot;http://www.thunderforest.com/&quot;>Thunderforest</a>, Data <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors",
-            initiallyChecked :true
-        },
-        outdoors: {
-            nameTile: 'outdoors',
-            url: 'https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=dcc7bcce19df4c7e9537813bd66c45b5',
-            attribution : "Maps <a href=&quot;http://www.thunderforest.com/&quot;>Thunderforest</a>, Data <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-        },
-        transport: {
-            nameTile: 'transport',
-            url: 'https://tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=dcc7bcce19df4c7e9537813bd66c45b5',
-            attribution : "Maps <a href=&quot;http://www.thunderforest.com/&quot;>Thunderforest</a>, Data <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-        },
-    }
-    
-    const layersRefactored = `            
-            {this.layers.map( layer => (
-                <BaseLayer checked name={layers.landscape.nameTile}>
-                    <TileLayer
-                      attribution={layers.landscape.attribution}
-                      url={layers.landscape.url}
-                    />
-              </BaseLayer>
-            ))}`
-     
-    let markersListToDisplay = this.props.listToDisplay.filter(element => element.properties.featureType === 'marker' ) ;
-      let routesToDisplay = this.props.listToDisplay.filter(element => element.properties.featureType === 'route' ) 
+    // array of type of Markers to go through when rendering page to create its correspinding markers ( and checking in state if should be displayed or not)
+    const markersTypeToRender = [ 'markerStartFinish' , 'markerWater', 'markerWC', 'markerViewPoint' ];
+
+    let markersListToDisplay = this.props.listToDisplay.filter(element => element.properties.featureType === 'marker' );
+      
+    let routesToDisplay = this.props.listToDisplay.filter(element => element.properties.featureType === 'route' );
     
     return (
         
           <div id="map-form-container">
 
-               {/* if want to hide the automatic leaflet zoom control: add "zoomControl= curlybrace false closecurlybrace" */}
                 <Map center={position} zoom={this.state.initialView.zoom} id="map-container" >
                 
                 <button id="open-tool-button" className="tool-button" onClick={ e => this.expandToolPanel(e)} >
                 </button>
                 
-                    {/* <ZoomControl position="topright" /> */}
+
+                {/* create the layer corresponding with the type of layer selected and updated in state */}
+                <TileLayer
+                  attribution="Maps <a href=&quot;http://www.thunderforest.com/&quot;>Thunderforest</a>, Data <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                  url={`https://tile.thunderforest.com/${this.props.layer}/{z}/{x}/{y}.png?apikey=dcc7bcce19df4c7e9537813bd66c45b5`}
+                />
+                    
+              
+                   
+               {routesToDisplay.map( route => (
+                   <GeoJSON key={route.properties.name} data={route} 
+                      color="var(--palette-1-3)"
+                      fillColor="var(--palette-1-3)"/>
+                ))}
                 
-
-
-                    <TileLayer
-                      attribution="Maps <a href=&quot;http://www.thunderforest.com/&quot;>Thunderforest</a>, Data <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-                      url={`https://tile.thunderforest.com/${this.props.layer}/{z}/{x}/{y}.png?apikey=dcc7bcce19df4c7e9537813bd66c45b5`}
-                    />
-                    
-              
-                   
-                   {routesToDisplay.map( route => (
-                       <GeoJSON key={route.properties.name} data={route} 
-                          color="var(--palette-1-3)"
-                          fillColor="var(--palette-1-3)"/>
-                    ))}
-              
-              
-                   
-                    {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerStart' || marker.properties.markerType === 'markerFinish' ).map( (marker) => (
-                        <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
-                                 title= {marker.properties.name}
-                                icon={ this.iconToDisplay({marker}) }
-                                zIndexOffset= '-1000'
-                                key = {marker.properties.name}
-                              >
-                        </Marker>
-                    ))}
-                    
-                   
-                    {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerWater' ).map( (marker) => (
-                        <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
-                                 title= {marker.properties.name}
-                                icon={ this.iconToDisplay({marker}) }
-                                zIndexOffset= '-1000'
-                                key = {marker.properties.name}
-                              >
-                        </Marker>
-                    ))}
-                   
-                    {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerWC' ).map( (marker) => (
-                        <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
-                                 title= {marker.properties.name}
-                                icon={ this.iconToDisplay({marker}) }
-                                zIndexOffset= '-1000'
-                                key = {marker.properties.name}
-                              >
-                        </Marker>
-                    ))}
-                   
-                    {markersListToDisplay.filter(marker => marker.properties.markerType === 'markerViewPoint' ).map( (marker) => (
+                {/* go through the array containing the possible types of markers to display, and display the ones that should depending of their status in state */}
+                {markersListToDisplay.filter(marker => this.props[marker.properties.markerType]).map( marker => (
                         <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
                                  title= {marker.properties.name}
                                 icon={ this.iconToDisplay({marker}) }
