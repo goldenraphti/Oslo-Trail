@@ -211,7 +211,7 @@ export default class MapUI extends Component {
                                 <div className="radiobox-row">
                                     <div className="checkbox-div">
                                        <label>Landscape</label>
-                                        <input type="radio" id="landscape-checkbox" value="landscape" name="layer-checkbox" onChange={e => this.props.updateLayer(e.target.value)} />
+                                        <input type="radio" id="landscape-checkbox" value="landscape" name="layer-checkbox" onChange={e => this.props.updateLayer(e.target.value)} checked = {this.props.layer === 'landscape'} />
                                     </div>
                                 </div>
                                 <div className="radiobox-row">

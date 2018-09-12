@@ -42,6 +42,7 @@ class Catalog extends Component {
         this.setState({layer: value});
         
         console.log(this.state.layer);
+        
     }
 
     updateVal = (e) => {
