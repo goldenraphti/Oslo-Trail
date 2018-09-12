@@ -113,7 +113,7 @@ export default class MapUI extends Component {
                     
               
                    
-               {routesToDisplay.map( route => (
+               {routesToDisplay.filter(route => route.properties.climb <= this.props.filterClimb || this.props.filterClimb === null ).filter(route => route.properties.distance <= this.props.filterDistance || this.props.filterDistance === null ).filter(route => this.props[route.properties['route-type']] ).map( route => (
                    <GeoJSON key={route.properties.name} data={route} 
                       color="var(--palette-1-3)"
                       fillColor="var(--palette-1-3)"/>
@@ -190,12 +190,12 @@ export default class MapUI extends Component {
                               <h3>Type of route</h3>
                                 <div className="checkbox-column">
                                     <div className="checkbox-div">
-                                        <input onChange={e => this.props.updateFilters(e.target)} className="" id="input-loop"  type="checkbox" checked={this.props.filterLoop} title="loop"></input>
+                                        <input onChange={e => this.props.updateFilters(e.target)} className="" id="input-loop"  type="checkbox" checked={this.props.loop} value="loop" title="loop"></input>
                                        <label>Loop</label>
                                     </div>
                                       <div className="checkbox-div">
-                                        <input onChange={e => this.props.updateFilters(e.target)} className="" id="input-traversee"  type="checkbox" checked={this.props.filterTraversee}  title="traversee"></input>
-                                       <label>Traversee</label>
+                                        <input onChange={e => this.props.updateFilters(e.target)} className="" id="input-traversee"  type="checkbox" checked={this.props.traversee} value="traversee" title="traversee"></input>
+                                       <label>One-way Crossing</label>
                                     </div>
                                 </div>
                             </div> 

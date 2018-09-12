@@ -95,8 +95,10 @@ class Catalog extends Component {
                 <MapUI
                     listToDisplay = {this.state.listToDisplay}
                     markersListToDisplay = {this.state.markersListToDisplay}
-                    filterLoop = {this.state.filterLoop}
-                    filterTraversee = {this.state.filterTraversee}
+                    filterClimb = {this.state.filterClimb}
+                    filterDistance = {this.state.filterDistance}
+                    loop = {this.state.filterLoop}
+                    traversee = {this.state.filterTraversee}
                     layer = {this.state.layer}
                     updateLayer = {this.updateLayer}
                     updateFilters = {this.updateFilters}
