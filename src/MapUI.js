@@ -133,15 +133,12 @@ export default class MapUI extends Component {
                 
                     {/* <ZoomControl position="topright" /> */}
                 
-                
-               <LayersControl position="bottomright">
-                 
-                  <BaseLayer checked name={layers.landscape.nameTile}>
+
+
                     <TileLayer
                       attribution="Maps <a href=&quot;http://www.thunderforest.com/&quot;>Thunderforest</a>, Data <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                       url={`https://tile.thunderforest.com/${this.props.layer}/{z}/{x}/{y}.png?apikey=dcc7bcce19df4c7e9537813bd66c45b5`}
                     />
-                  </BaseLayer>
                     
               
                    
@@ -193,9 +190,7 @@ export default class MapUI extends Component {
                               >
                         </Marker>
                     ))}
-              
-              
-                </LayersControl>
+
             </Map>
             
            <form id="catalog-panel" className="hidden">
