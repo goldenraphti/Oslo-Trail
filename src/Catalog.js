@@ -40,12 +40,9 @@ class Catalog extends Component {
 
     updateLayer = (value) => {
         this.setState({layer: value});
-        
-        console.log(this.state.layer);
-        
     }
 
-    updateVal = (e) => {
+    updateFilters = (e) => {
         console.log(e, "id", e.id, "value", e.value);
         // updates the value in the span just above the slider in real time
         e.id === "input-climb" || e.id === "input-distance" ? document.getElementById(`span-value-${e.id}`).textContent = e.value : null;
@@ -59,7 +56,7 @@ class Catalog extends Component {
         } else if (e.id === "input-traversee") {
             this.state.filterTraversee !== true ? this.setState({filterTraversee : true}) : this.setState({filterTraversee : false})
         } else {
-            console.log('updateVal function called but e.id does not correspond to anything known')
+            console.log('updateFilters function called but e.id does not correspond to anything known')
         }
         
         console.log(this.state);
@@ -70,6 +67,12 @@ class Catalog extends Component {
     filterListRoutes = () => {
         this.setState({listToDisplay: routesData.features})
     }
+    
+    // hides or display corresponding markers types when check or uncheck checkobox in tool panel Markers
+     updateValMarker = (value) => {
+         this.state[value] === true ? this.setState({ [value] : false }) : this.setState({ [value] : true });
+         console.log(this.state);
+     }
             
     // modify listToDisplay after user have clicked on a route in list
     selectRoute = (selectedRoute) => {
@@ -118,7 +121,8 @@ class Catalog extends Component {
                     filterTraversee = {this.state.filterTraversee}
                     layer = {this.state.layer}
                     updateLayer = {this.updateLayer}
-                    updateVal = {this.updateVal}
+                    updateFilters = {this.updateFilters}
+                    updateValMarker = {this.updateValMarker}
                     markerStartFinish = {this.state.markerStartFinish}
                     markerWater = {this.state.markerWater}
                     markerWC = {this.state.markerWC}

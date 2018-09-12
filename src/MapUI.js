@@ -235,7 +235,7 @@ export default class MapUI extends Component {
                               <h3>Distance (km)</h3>
                                <div className="range-slider-column">
                                   <span className="range-input-value" id="span-value-input-distance">-</span>
-                                   <input onChange={e => this.props.updateVal(e.target)} className="range-slider__range"  id="input-distance" type="range" min="0" max="150" step="5"></input>
+                                   <input onChange={e => this.props.updateFilters(e.target)} className="range-slider__range"  id="input-distance" type="range" min="0" max="150" step="5"></input>
                                </div>
                             </div>
                                      
@@ -243,7 +243,7 @@ export default class MapUI extends Component {
                               <h3>Climb (m+)</h3>
                                <div className="range-slider-column">
                                    <span className="range-input-value" id="span-value-input-climb">-</span>
-                                    <input onChange={e => this.props.updateVal(e.target)} className="range-slider__range"  id="input-climb" type="range" min="0" max="3000" step="10"></input>
+                                    <input onChange={e => this.props.updateFilters(e.target)} className="range-slider__range"  id="input-climb" type="range" min="0" max="3000" step="10"></input>
                                 </div>
                             </div>
                                      
@@ -251,11 +251,11 @@ export default class MapUI extends Component {
                               <h3>Type of route</h3>
                                 <div className="checkbox-column">
                                     <div className="checkbox-div">
-                                        <input onChange={e => this.props.updateVal(e.target)} className="" id="input-loop"  type="checkbox" checked={this.props.filterLoop} title="loop"></input>
+                                        <input onChange={e => this.props.updateFilters(e.target)} className="" id="input-loop"  type="checkbox" checked={this.props.filterLoop} title="loop"></input>
                                        <label>Loop</label>
                                     </div>
                                       <div className="checkbox-div">
-                                        <input onChange={e => this.props.updateVal(e.target)} className="" id="input-traversee"  type="checkbox" checked={this.props.filterTraversee}  title="traversee"></input>
+                                        <input onChange={e => this.props.updateFilters(e.target)} className="" id="input-traversee"  type="checkbox" checked={this.props.filterTraversee}  title="traversee"></input>
                                        <label>Traversee</label>
                                     </div>
                                 </div>
@@ -270,28 +270,28 @@ export default class MapUI extends Component {
                                        <img src={require('./images/start-finish-tool-colored.svg')} alt=""/>
                                        <p id="start-finish-description">Start/Finish</p>
                                    </div>
-                                    <input aria-labelledby="start-finish-description" onChange={e => this.props.updateValMarker(e.target)} className="" id="input-marker-start-finish"  type="checkbox" checked={this.props.markerStartFinish}></input>
+                                    <input aria-labelledby="start-finish-description" onChange={e => this.props.updateValMarker(e.target.value)} className="" value="markerStartFinish" id="input-marker-start-finish"  type="checkbox" checked={this.props.markerStartFinish}></input>
                                 </div>
                                 <div className="checkbox-row">
                                    <div className="marker-checkbox-description">
                                        <img src={require('./images/water-tool-colored.svg')} alt=""/>
                                        <p id="water-description">Drinkable water</p>
                                    </div>
-                                    <input aria-labelledby="water-description" onChange={e => this.props.updateValMarker(e.target)} className="" id="input-marker-water"  type="checkbox" checked={this.props.markerWater}></input>
+                                    <input aria-labelledby="water-description" onChange={e => this.props.updateValMarker(e.target.value)} className="" value="markerWater" id="input-marker-water"  type="checkbox" checked={this.props.markerWater}></input>
                                 </div>
                                 <div className="checkbox-row">
                                    <div className="marker-checkbox-description">
                                        <img src={require('./images/wc-tool-colored.svg')} alt=""/>
                                        <p id="wc-description">WC</p>
                                    </div>
-                                    <input aria-labelledby="wc-description" onChange={e => this.props.updateValMarker(e.target)} className="" id="input-marker-wc"  type="checkbox" checked={this.props.markerWC}></input>
+                                    <input aria-labelledby="wc-description" onChange={e => this.props.updateValMarker(e.target.value)} className="" value="markerWC" id="input-marker-wc"  type="checkbox" checked={this.props.markerWC}></input>
                                 </div>
                                 <div className="checkbox-row">
                                    <div className="marker-checkbox-description">
                                        <img src={require('./images/view-point-tool-colored.svg')} alt=""/>
                                        <p id="view-points-description">View Points</p>
                                    </div>
-                                    <input aria-labelledby="view-points-description" onChange={e => this.props.updateValMarker(e.target)} className="" id="input-marker-view-point"  type="checkbox" checked={this.props.markerViewPoint}></input>
+                                    <input aria-labelledby="view-points-description" onChange={e => this.props.updateValMarker(e.target.value)} className="" value="markerViewPoint" id="input-marker-view-point"  type="checkbox" checked={this.props.markerViewPoint}></input>
                                 </div>
                             </div> 
                        </div>
