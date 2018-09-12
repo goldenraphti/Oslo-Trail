@@ -7,35 +7,45 @@ import Footer from './Footer'
 import routesData from './routes/routesData'
 
 
+    
+    const allRoutes = routesData.features.filter(element => element.properties.featureType === 'route' )
+
+    const allMarkers = routesData.features.filter(element => element.properties.featureType === 'marker' )
+
 
 class Catalog extends Component {
     
     
-
-    
     state = {
-        listToDisplay : routesData.features,
+        routesToDisplay : allRoutes,
+        markersToDisplay : allMarkers, 
+        routeNamesToDisplay : [],
         layer: 'landscape',
         filterDistance:null,
         filterClimb:null,
         // filter false means the user does not want this type of route in the list
-        filterLoop:true,
-        filterTraversee:true,
+        loop:true,
+        traversee:true,
         markerStartFinish: true,
         markerWater: false,
         markerWC: false,
         markerViewPoint: false,
         selectedRoute: null,
-        selectedMapLayer: 'landscape'
+        selectedMapLayer: 'landscape',
     }
     
     componentDidMount() {
         this.retrieveRoutesData();
     }
 
+    componentDidUpdate() {
+    }
+
     // when component mount, import all routesData to listToDisplay, before being filtered
     retrieveRoutesData() {
-        this.setState({listToDisplay: routesData.features})
+        this.setState({routesToDisplay : allRoutes });
+        this.setState({markersToDisplay : allMarkers });
+        this.updateRouteNamesToDisplay();
     }
 
     updateLayer = (value) => {
@@ -43,29 +53,35 @@ class Catalog extends Component {
     }
 
     updateFilters = (e) => {
-        console.log(e, "id", e.id, "value", e.value);
+        
         // updates the value in the span just above the slider in real time
         e.id === "input-climb" || e.id === "input-distance" ? document.getElementById(`span-value-${e.id}`).textContent = e.value : null;
+        
+        console.log(e.id , e.value);
+        
         // update the filter values in the state
         if (e.id === "input-distance") {
-            this.setState({filterDistance : e.value})
+            this.setState({filterDistance : e.value});
         } else if (e.id === "input-climb") {
-            this.setState({filterClimb : e.value})
+            this.setState({filterClimb : e.value});
         } else if (e.id === "input-loop") {
-            this.state.filterLoop !== true ? this.setState({filterLoop : true}) : this.setState({filterLoop : false})
+            this.state.loop === true ? this.setState({loop : false}) : this.setState({loop : true})
         } else if (e.id === "input-traversee") {
-            this.state.filterTraversee !== true ? this.setState({filterTraversee : true}) : this.setState({filterTraversee : false})
+            this.state.traversee === true ? this.setState({traversee : false}) : this.setState({traversee : true})
         } else {
             console.log('updateFilters function called but e.id does not correspond to anything known')
         }
         
-        console.log(this.state);
+        this.filterRoutes()
+        
     }
     
+    filterRoutes = () => {        
+        let newRoutesToDisplay = allRoutes.filter(route => route.properties.climb <= this.state.filterClimb || this.state.filterClimb === null ).filter(route => route.properties.distance <= this.state.filterDistance || this.state.filterDistance === null ).filter(route => this.state[route.properties['route-type']]);
         
-    // modify listToDisplay after each time the user moves a slider a check/uncheck a box
-    filterListRoutes = () => {
-        this.setState({listToDisplay: routesData.features})
+        this.setState({routesToDisplay: newRoutesToDisplay });
+        
+        this.updateRouteNamesToDisplay();
     }
     
     // hides or display corresponding markers types when check or uncheck checkobox in tool panel Markers
@@ -75,15 +91,27 @@ class Catalog extends Component {
             
     // modify listToDisplay after user have clicked on a route in list
     selectRoute = (selectedRoute) => {
-        let newListToDisplay = routesData.features.filter( element => element.properties.route === selectedRoute)
+        let newListToDisplay = allRoutes.filter( element => element.properties.route === selectedRoute)
         
-        this.setState({listToDisplay: newListToDisplay });
+        this.setState({routesToDisplay: newListToDisplay });
         this.setState({selectedRoute: selectedRoute});
+        
+        this.updateRouteNamesToDisplay();
     }
 
+    updateRouteNamesToDisplay = () => {
+//        this.state.markersToDisplay.map( marker => console.log(marker.properties.route));
+        let routeNamesToDisplay = [];
+        this.state.routesToDisplay.map( route => routeNamesToDisplay.push(route.properties.route) );
+        
+        this.setState({routeNamesToDisplay : routeNamesToDisplay})
+        
+//        console.log(routesNamesToDisplay , this.state.routesToDisplay.length);
+//        this.state.markersToDisplay.map( marker => console.log(marker , marker.properties.route ,  routesNamesToDisplay.includes(marker.properties.route)))
+    }
     
     clearFilters = () => {
-        this.setState({listToDisplay: routesData.features});
+        this.setState({routesToDisplay: allRoutes});
     }
     
     render() {
@@ -93,12 +121,13 @@ class Catalog extends Component {
                 <Navbar />
                
                 <MapUI
-                    listToDisplay = {this.state.listToDisplay}
-                    markersListToDisplay = {this.state.markersListToDisplay}
+                    routesToDisplay = {this.state.routesToDisplay}
+                    markersToDisplay = {this.state.markersToDisplay}
+                    routeNamesToDisplay = {this.state.routeNamesToDisplay}
                     filterClimb = {this.state.filterClimb}
                     filterDistance = {this.state.filterDistance}
-                    loop = {this.state.filterLoop}
-                    traversee = {this.state.filterTraversee}
+                    loop = {this.state.loop}
+                    traversee = {this.state.traversee}
                     layer = {this.state.layer}
                     updateLayer = {this.updateLayer}
                     updateFilters = {this.updateFilters}

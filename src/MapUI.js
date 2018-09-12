@@ -29,11 +29,6 @@ export default class MapUI extends Component {
       
   }
 
-//.map( element => console.log('markers to display', element.properties.name) )
-
-
-
-
     componentDidMount() {
     }
 
@@ -90,10 +85,6 @@ export default class MapUI extends Component {
     
     // array of type of Markers to go through when rendering page to create its correspinding markers ( and checking in state if should be displayed or not)
     const markersTypeToRender = [ 'markerStartFinish' , 'markerWater', 'markerWC', 'markerViewPoint' ];
-
-    let markersListToDisplay = this.props.listToDisplay.filter(element => element.properties.featureType === 'marker' );
-      
-    let routesToDisplay = this.props.listToDisplay.filter(element => element.properties.featureType === 'route' );
     
     return (
         
@@ -113,14 +104,14 @@ export default class MapUI extends Component {
                     
               
                    
-               {routesToDisplay.filter(route => route.properties.climb <= this.props.filterClimb || this.props.filterClimb === null ).filter(route => route.properties.distance <= this.props.filterDistance || this.props.filterDistance === null ).filter(route => this.props[route.properties['route-type']] ).map( route => (
+               {this.props.routesToDisplay.map( route => (
                    <GeoJSON key={route.properties.name} data={route} 
                       color="var(--palette-1-3)"
                       fillColor="var(--palette-1-3)"/>
                 ))}
                 
                 {/* go through the array containing the possible types of markers to display, and display the ones that should depending of their status in state */}
-                {markersListToDisplay.filter(marker => this.props[marker.properties.markerType]).map( marker => (
+                {this.props.markersToDisplay.filter(marker => this.props[marker.properties.markerType]).filter( marker => this.props.routeNamesToDisplay.includes(marker.properties.route)).map( marker => (
                         <Marker position={[marker.geometry.coordinates[1],marker.geometry.coordinates[0]]} 
                                  title= {marker.properties.name}
                                 icon={ this.iconToDisplay({marker}) }
@@ -237,7 +228,7 @@ export default class MapUI extends Component {
                         <div id="list-routes" className="form-section">
                             <h2>Routes list</h2>
                             <ul>
-                                {this.props.listToDisplay.filter(route => route.properties.featureType === 'route' ).map( (route) => (
+                                {this.props.routesToDisplay.filter(route => route.properties.featureType === 'route' ).map( (route) => (
                                     <li key={route.properties.name} onClick={e => this.props.selectRoute(route.properties.route)}><button type="button" href="#">{route.properties.route}</button></li>
                                 ))}
                             </ul>
