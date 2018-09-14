@@ -115,7 +115,7 @@ class Catalog extends Component {
         this.setState({routesToDisplay: newListToDisplay });
         this.setState({selectedRoute: selectedRoute});
         
-        this.updateRouteNamesToDisplay();
+        this.updateRouteNamesToDisplay(newListToDisplay);
     }
 
     updateRouteNamesToDisplay = (newRoutesToDisplay) => {
@@ -128,6 +128,7 @@ class Catalog extends Component {
     
     clearFilters = () => {
         this.setState({routesToDisplay: allRoutes});
+        this.updateRouteNamesToDisplay(allRoutes);
     }
     
     render() {
