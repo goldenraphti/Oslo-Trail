@@ -29,8 +29,19 @@ export default class MapUI extends Component {
       
   }
 
+    
     componentDidMount() {
+//        console.log('inside mapUI - ComponentDidMount' , this.state)
     }
+
+    componentWillReceiveProps() {
+//        console.log('inside mapUI - componentWillReceiveProps' , this.state, this.props)
+    }
+
+    componentDidUpdate() {
+//        console.log('inside mapUI - ComponentDidUpdate', this.state, this.props)
+    }
+
 
     iconToDisplay = (marker) => {
         
@@ -165,7 +176,7 @@ export default class MapUI extends Component {
                               <h3>Distance (km)</h3>
                                <div className="range-slider-column">
                                   <span className="range-input-value" id="span-value-input-distance">-</span>
-                                   <input onChange={e => this.props.updateFilters(e.target)} className="range-slider__range"  id="input-distance" type="range" min="0" max="150" step="5"></input>
+                                   <input onChange={e => this.props.updateFilters(e.target.id , e.target.value , this.props.filterDistance)} className="range-slider__range"  id="input-distance" type="range" min="0" max="150" step="5"></input>
                                </div>
                             </div>
                                      
@@ -173,7 +184,7 @@ export default class MapUI extends Component {
                               <h3>Climb (m+)</h3>
                                <div className="range-slider-column">
                                    <span className="range-input-value" id="span-value-input-climb">-</span>
-                                    <input onChange={e => this.props.updateFilters(e.target)} className="range-slider__range"  id="input-climb" type="range" min="0" max="3000" step="10"></input>
+                                    <input onChange={e => this.props.updateFilters(e.target.id , e.target.value , this.props.filterClimb)} className="range-slider__range"  id="input-climb" type="range" min="0" max="3000" step="10"></input>
                                 </div>
                             </div>
                                      
@@ -181,11 +192,11 @@ export default class MapUI extends Component {
                               <h3>Type of route</h3>
                                 <div className="checkbox-column">
                                     <div className="checkbox-div">
-                                        <input onChange={e => this.props.updateFilters(e.target)} className="" id="input-loop"  type="checkbox" checked={this.props.loop} value="loop" title="loop"></input>
+                                        <input onChange={e => this.props.updateFilters(e.target.id , e.target.value , this.props.loop)} className="" id="input-loop"  type="checkbox" checked={this.props.loop} value="loop" title="loop"></input>
                                        <label>Loop</label>
                                     </div>
                                       <div className="checkbox-div">
-                                        <input onChange={e => this.props.updateFilters(e.target)} className="" id="input-traversee"  type="checkbox" checked={this.props.traversee} value="traversee" title="traversee"></input>
+                                        <input onChange={e => this.props.updateFilters(e.target.id , e.target.value , this.props.traversee)} className="" id="input-traversee"  type="checkbox" checked={this.props.traversee} value="traversee" title="traversee"></input>
                                        <label>One-way Crossing</label>
                                     </div>
                                 </div>

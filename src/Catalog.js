@@ -36,9 +36,16 @@ class Catalog extends Component {
     
     componentDidMount() {
         this.retrieveRoutesData();
+//        console.log('inside catalog - ComponentDidMount' , this.state)
+    }
+
+    componentWillReceiveProps() {
+//        console.log('inside catalog - componentWillReceiveProps' , this.state)
     }
 
     componentDidUpdate() {
+//        console.log('inside catalog - ComponentDidUpdate', this.state)
+        
     }
 
     // when component mount, import all routesData to listToDisplay, before being filtered
@@ -52,32 +59,44 @@ class Catalog extends Component {
         this.setState({layer: value});
     }
 
-    updateFilters = (e) => {
+    updateFilters = (id , value , prevState) => {
+
+                
+        console.log( 'in updateFilters' , id , value , prevState, this.state);
         
         // updates the value in the span just above the slider in real time
-        e.id === "input-climb" || e.id === "input-distance" ? document.getElementById(`span-value-${e.id}`).textContent = e.value : null;
+        id === "input-climb" || id === "input-distance" ? document.getElementById(`span-value-${id}`).textContent = value : null;
         
-        console.log(e.id , e.value);
+
         
         // update the filter values in the state
-        if (e.id === "input-distance") {
-            this.setState({filterDistance : e.value});
-        } else if (e.id === "input-climb") {
-            this.setState({filterClimb : e.value});
-        } else if (e.id === "input-loop") {
-            this.state.loop === true ? this.setState({loop : false}) : this.setState({loop : true})
-        } else if (e.id === "input-traversee") {
-            this.state.traversee === true ? this.setState({traversee : false}) : this.setState({traversee : true})
+        if (id === "input-distance") {
+            this.setState({filterDistance : value});
+        } else if (id === "input-climb") {
+            this.setState({filterClimb : value});
+        } else if (id === "input-loop") {
+            this.setState({loop : !this.state.loop})
+        } else if (id === "input-traversee") {
+            this.setState({traversee : !this.state.traversee})
         } else {
-            console.log('updateFilters function called but e.id does not correspond to anything known')
+            console.log('updateFilters function called but id does not correspond to anything known')
         }
         
-        this.filterRoutes()
+        this.filterRoutes(id, value, prevState);
         
     }
+//    
+//    filterClimbWhenNotModified = (route) => {
+//        route.properties.climb <= this.state.filterClimb || this.state.filterClimb === null ? true || false
+//    }
     
-    filterRoutes = () => {        
-        let newRoutesToDisplay = allRoutes.filter(route => route.properties.climb <= this.state.filterClimb || this.state.filterClimb === null ).filter(route => route.properties.distance <= this.state.filterDistance || this.state.filterDistance === null ).filter(route => this.state[route.properties['route-type']]);
+    filterRoutes = (id, value, prevState) => {
+        
+        console.log( 'in filterRoutes' , id , value , prevState, this.state);
+        
+        let newRoutesToDisplay = allRoutes.filter( route => ( id === 'input-climb' ?  (route.properties.climb <= value) :  (route.properties.climb <= this.state.filterClimb || this.state.filterClimb === null)) ).filter( route => ( id === 'input-distance' ?  (route.properties.distance <= value) :  (route.properties.distance <= this.state.filterDistance || this.state.filterDistance === null)) )
+        
+        newRoutesToDisplay = newRoutesToDisplay.filter( route => (route.properties['route-type'] === value ? !prevState : this.state[route.properties['route-type']] ) );
         
         this.setState({routesToDisplay: newRoutesToDisplay });
         
