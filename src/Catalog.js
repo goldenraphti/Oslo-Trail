@@ -62,7 +62,7 @@ class Catalog extends Component {
     updateFilters = (id , value , prevState) => {
 
                 
-        console.log( 'in updateFilters' , id , value , prevState, this.state);
+//        console.log( 'in updateFilters' , id , value , prevState, this.state);
         
         // updates the value in the span just above the slider in real time
         id === "input-climb" || id === "input-distance" ? document.getElementById(`span-value-${id}`).textContent = value : null;
@@ -92,7 +92,6 @@ class Catalog extends Component {
     
     filterRoutes = (id, value, prevState) => {
         
-        console.log( 'in filterRoutes' , id , value , prevState, this.state);
         
         let newRoutesToDisplay = allRoutes.filter( route => ( id === 'input-climb' ?  (route.properties.climb <= value) :  (route.properties.climb <= this.state.filterClimb || this.state.filterClimb === null)) ).filter( route => ( id === 'input-distance' ?  (route.properties.distance <= value) :  (route.properties.distance <= this.state.filterDistance || this.state.filterDistance === null)) )
         
@@ -100,7 +99,8 @@ class Catalog extends Component {
         
         this.setState({routesToDisplay: newRoutesToDisplay });
         
-        this.updateRouteNamesToDisplay();
+        this.updateRouteNamesToDisplay(newRoutesToDisplay);
+        
     }
     
     // hides or display corresponding markers types when check or uncheck checkobox in tool panel Markers
@@ -118,15 +118,12 @@ class Catalog extends Component {
         this.updateRouteNamesToDisplay();
     }
 
-    updateRouteNamesToDisplay = () => {
-//        this.state.markersToDisplay.map( marker => console.log(marker.properties.route));
+    updateRouteNamesToDisplay = (newRoutesToDisplay) => {
         let routeNamesToDisplay = [];
-        this.state.routesToDisplay.map( route => routeNamesToDisplay.push(route.properties.route) );
+        
+        newRoutesToDisplay !== undefined ? newRoutesToDisplay.map( route => routeNamesToDisplay.push(route.properties.route) ) : allRoutes.map (route => routeNamesToDisplay.push(route.properties.route));
         
         this.setState({routeNamesToDisplay : routeNamesToDisplay})
-        
-//        console.log(routesNamesToDisplay , this.state.routesToDisplay.length);
-//        this.state.markersToDisplay.map( marker => console.log(marker , marker.properties.route ,  routesNamesToDisplay.includes(marker.properties.route)))
     }
     
     clearFilters = () => {
