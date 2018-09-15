@@ -12,7 +12,8 @@ class About extends Component {
     render() {
         return (
             <div id="about-container" className="text-page-container">
-               <Navbar />
+               <Navbar
+                    currentPage = 'about' />
                
                <div className="content">
                    <DescriptionAbout />

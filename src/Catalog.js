@@ -17,6 +17,7 @@ class Catalog extends Component {
     
     
     state = {
+        currentPage: 'catalog',
         routesToDisplay : allRoutes,
         markersToDisplay : allMarkers, 
         routeNamesToDisplay : [],
@@ -135,7 +136,9 @@ class Catalog extends Component {
         return (
             <div id='catalog-container'>
                 
-                <Navbar />
+                <Navbar 
+                    currentPage = 'catalog'
+                 />
                
                 <MapUI
                     routesToDisplay = {this.state.routesToDisplay}

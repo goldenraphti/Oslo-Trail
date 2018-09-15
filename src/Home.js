@@ -16,7 +16,8 @@ class Home extends Component {
     render() {
         return (
             <div id="home-container" className="text-page-container">
-               <Navbar />
+               <Navbar
+                    currentPage = 'home' />
                
                <div className="content">
                    <DescriptionHome />
