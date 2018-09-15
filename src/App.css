@@ -312,6 +312,41 @@ nav a.currentNav:before {
     
 }
 
+
+
+/*  Search filters */
+
+
+.search-books-bar {
+  width: 80%;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+}
+
+.search-books-bar input {
+  width: 100%;
+  padding: 15px 10px;
+  font-size: 0.8em;
+  border: none;
+  outline: none;
+    background: #fff;
+}
+
+.search-books-bar input:focus {
+  width: 100%;
+  padding: 15px 10px;
+  font-size: 0.8em;
+  border: none;
+    background: #fff;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 0 6px rgba(0,0,0,0.2);
+}
+
+
+
+/* end search filter */
+
 #map-container {
     text-align: center;
     width: 100%;

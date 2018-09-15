@@ -145,6 +145,15 @@ export default class MapUI extends Component {
                    <div id="content-tool-panel">
                       <div id="search-container" className="form-section form-section-hideable hidden">
                             <h2>Search</h2>
+                            <div className="search-books-bar">
+                                <div className="search-books-input-wrapper">
+                                   <input
+                                       type='text'
+                                       placeholder='Search by start/finish location or spot to cross'
+                                       onChange={ (e) => this.props.searchLocationsInRoutes(e.target.value) }    
+                                   />
+                                </div>
+                            </div>
                        </div>
                        <div id="layers-container" className="form-section form-section-hideable hidden">
                             <h2>Map layer</h2>

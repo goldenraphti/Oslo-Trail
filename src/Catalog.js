@@ -3,6 +3,7 @@ import './App.css'
 import Navbar from './Navbar'
 import MapUI from './MapUI';
 import Footer from './Footer'
+import escapeRegExp from 'escape-string-regexp'
 // using webpack json loader we can import our geojson file like this
 import routesData from './routes/routesData'
 
@@ -21,6 +22,7 @@ class Catalog extends Component {
         routesToDisplay : allRoutes,
         markersToDisplay : allMarkers, 
         routeNamesToDisplay : [],
+        searchOnlyDisplayed: false,
         layer: 'landscape',
         filterDistance:null,
         filterClimb:null,
@@ -37,7 +39,7 @@ class Catalog extends Component {
     
     componentDidMount() {
         this.retrieveRoutesData();
-//        console.log('inside catalog - ComponentDidMount' , this.state)
+//        console.log('inside catalog - ComponentDidMount' , allRoutes.map( route => route.properties.locationsToSearch))
     }
 
     componentWillReceiveProps() {
@@ -54,6 +56,32 @@ class Catalog extends Component {
         this.setState({routesToDisplay : allRoutes });
         this.setState({markersToDisplay : allMarkers });
         this.updateRouteNamesToDisplay();
+    }
+
+    // function called each time the user type in the search location panel, putting some latency as in the book tracking app, filtering the list of routes displayed conserving only the ones containing this part of word in one of their locations saved in their properties.locationsToSearch
+    searchLocationsInRoutes = (query) => {
+        
+        let isLookingInAllRoutesOrOnlyDisplayed = this.state.searchOnlyDisplayed;
+        
+        const match = new RegExp(escapeRegExp(query), 'i')
+        
+        console.log(match)
+
+        let routesToMatchWith = [];
+        
+        // must make sure that when searchh only in displayed, recreate the list again filtering using the filters, buut startibng from the whole allRoutes and filtering on  top of that and THEN only matching the RegExp
+        this.state.searchOnlyDisplayed ? routesToMatchWith = allRoutes.filter( route => route.properties.climb <= this.state.filterClimb || this.state.filterClimb === null).filter( route =>  route.properties.distance <= this.state.filterDistance || this.state.filterDistance === null).filter( route =>  this.state[route.properties['route-type']] ) : routesToMatchWith = allRoutes;
+        
+        let allRoutesFilteredBySearchTerm = routesToMatchWith.filter(route => match.test(route.properties.locationsToSearch) )
+
+        console.log( 'routesToMatchWith' , routesToMatchWith , 'allRoutesFiltered', allRoutesFilteredBySearchTerm);
+        
+        this.setState({routesToDisplay : allRoutesFilteredBySearchTerm });
+        
+//      must make sure when routes hides then their markers hide too
+        this.updateRouteNamesToDisplay(allRoutesFilteredBySearchTerm);
+        
+        
     }
 
     updateLayer = (value) => {
@@ -86,12 +114,9 @@ class Catalog extends Component {
         this.filterRoutes(id, value, prevState);
         
     }
-//    
-//    filterClimbWhenNotModified = (route) => {
-//        route.properties.climb <= this.state.filterClimb || this.state.filterClimb === null ? true || false
-//    }
-    
-    filterRoutes = (id, value, prevState) => {
+
+    // filter routes based on the filters saved and the values sent from the filter onChanged
+    filterRoutes = (id = null, value = null, prevState = null) => {
         
         
         let newRoutesToDisplay = allRoutes.filter( route => ( id === 'input-climb' ?  (route.properties.climb <= value) :  (route.properties.climb <= this.state.filterClimb || this.state.filterClimb === null)) ).filter( route => ( id === 'input-distance' ?  (route.properties.distance <= value) :  (route.properties.distance <= this.state.filterDistance || this.state.filterDistance === null)) )
@@ -144,6 +169,7 @@ class Catalog extends Component {
                     routesToDisplay = {this.state.routesToDisplay}
                     markersToDisplay = {this.state.markersToDisplay}
                     routeNamesToDisplay = {this.state.routeNamesToDisplay}
+                    searchLocationsInRoutes = {this.searchLocationsInRoutes}
                     filterClimb = {this.state.filterClimb}
                     filterDistance = {this.state.filterDistance}
                     loop = {this.state.loop}

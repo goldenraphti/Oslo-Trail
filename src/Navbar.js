@@ -10,7 +10,6 @@ class Navbar extends Component {
     
     // function to identify all the navbar links, then iterate through them to check which one is the one of the current page (innerText === this.props.currentPage) and the adds to it a className to keep it always underlines, or different color, or whatever
     underlineCurrentPage = () => {
-        console.log(this.props.currentPage)
         
         let listLinks = document.getElementsByClassName('nav-a-link');
 
