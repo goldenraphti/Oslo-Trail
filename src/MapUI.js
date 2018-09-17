@@ -148,10 +148,15 @@ export default class MapUI extends Component {
                             <div className="search-books-bar">
                                 <div className="search-books-input-wrapper">
                                    <input
+                                      id="searchLocationInput"
                                        type='text'
                                        placeholder='Search by start/finish location or spot to cross'
                                        onChange={ (e) => this.props.searchLocationsInRoutes(e.target.value) }    
                                    />
+                                    <div className="checkbox-div">
+                                       <label>Search in all routes</label>
+                                        <input type="checkbox" id="searchInAllRoutes-checkbox" value="landscape" name="layer-checkbox" onChange={e => this.props.updateSearchInAll(this.props.searchInAllRoutesNotOnlyFiltered)} checked = {this.props.searchInAllRoutesNotOnlyFiltered} />
+                                    </div>
                                 </div>
                             </div>
                        </div>

@@ -20,9 +20,20 @@
   -webkit-animation-delay: 0.2s;
   animation-delay: 0.2s;
 }
+
 .animated.delay-1s {
   -webkit-animation-delay: 1s;
   animation-delay: 1s;
+}
+
+.animated.delay-0-3s {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
+.animated.delay-0-4s {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
 }
 
 .animated.delay-2s {

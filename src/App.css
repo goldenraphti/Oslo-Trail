@@ -60,6 +60,7 @@ ul {
 :root {
     --light-grey:#eaeaea;
     --light-grey-bg:rgba(234, 234, 234, 0.7);
+    --light-medium-grey:#bebebe;
     --medium-grey: #585858;
     --dark-grey: #292929;
     
@@ -119,19 +120,22 @@ a:visited {
 }
 
 nav {
+    box-shadow: 0 7px 6px -6px var(--medium-grey);
+    height: var(--navbar-height);
     z-index: 500;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 nav > ul {
-    background: var(--dark-grey);
-    height: var(--navbar-height);
     width: 100vw;
+    max-width: 1000px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
     color: var(--palette-1-3);
-    box-shadow: 0 7px 6px -6px var(--medium-grey);
 }
 
 nav a {
@@ -182,14 +186,14 @@ nav a.currentNav:before {
 }
 
 .text-page-container {
-    height: 100vh;
+    min-height: 100vh;
     background: local , linear-gradient(rgba(11, 11, 11, 0.8) , rgba(11, 11, 11, 0.8))  , url(images/SpoonGraphics-Topographic-Map-4.png) , top , repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.text-page-container nav ul {
+.text-page-container nav {
     background: linear-gradient(rgba(11, 11, 11, 0.3) , rgba(11, 11, 11, 0)) ;
     color: var(--palette-1-3);
     box-shadow: none;
@@ -201,10 +205,10 @@ nav a.currentNav:before {
 }
 
 .text-page-container .content {
-    height: calc(100vh -  var(--navbar-height));
+    min-height: calc(100vh -  var(--navbar-height));
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     text-align: left;
 }
@@ -225,16 +229,39 @@ nav a.currentNav:before {
     text-align: justify;
 }
 
+#description-home-container ul {
+   display: flex;
+   align-items: center;
+   justify-content:space-between;
+   flex-flow: row wrap;
+   align-content:flex-start;
+}
+
 .text-page-description-container li {
     padding-bottom: 0;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     cursor:auto;
+    max-width: 27vw;
+    margin: 10px 0;
 }
 
 .text-page-description-container li img {
-    width: 40px;
+    min-width: 30px;
+    max-width: 30px;
     margin-right: 20px;
+}
+
+.home-description-item-div h2{
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.home-description-item-div p{
+    margin: 0;
+    color: var(--light-medium-grey);
+    font-size: 0.8em;
 }
 
 #catalog-container {
@@ -325,7 +352,7 @@ nav a.currentNav:before {
   display: flex;
 }
 
-.search-books-bar input {
+.search-books-bar .search-books-input-wrapper input {
   width: 100%;
   padding: 15px 10px;
   font-size: 0.8em;
@@ -334,7 +361,7 @@ nav a.currentNav:before {
     background: #fff;
 }
 
-.search-books-bar input:focus {
+.search-books-bar .search-books-input-wrapper input:focus {
   width: 100%;
   padding: 15px 10px;
   font-size: 0.8em;
@@ -343,7 +370,16 @@ nav a.currentNav:before {
   box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 0 6px rgba(0,0,0,0.2);
 }
 
+#search-container .checkbox-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
 
+#search-container .checkbox-div input{
+    width: 10%;
+}
 
 /* end search filter */
 
@@ -359,7 +395,8 @@ nav a.currentNav:before {
 }
 
 footer {
-    padding-bottom: 15px;
+    margin-top: 30px;
+    padding: 15px 0;
     font-size: 0.9em;
     opacity: 0.7;
     color: var(--light-grey);
@@ -549,6 +586,62 @@ footer a:hover {
 .leaflet-control-container .leaflet-top.leaflet-left {
     right: 0;
 }
+
+/*------ ABOUT PAGE ------*/
+
+#credits {
+    width: 80vw;
+    max-width: 1000px;
+    text-align: center;
+}
+
+#credits-div {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+#credits-div > * {
+    margin: 0 10px;
+}
+
+#credits-div img{
+    width: 40px;
+}
+
+#credits ul {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   /* You can set flex-wrap and
+      flex-direction individually */
+   flex-direction: row;
+   flex-wrap: wrap;
+   /* Or do it all in one line
+     with flex flow */
+   flex-flow: row wrap;
+   /* tweak where items line
+      up on the row
+      valid values are: flex-start,
+      flex-end, space-between,
+      space-around, stretch */
+   align-content: flex-end;
+}
+
+#credits li {
+    margin: 0 10px;
+    max-width: 100%;
+}
+
+#credits a {
+    margin: 0 10px;
+    max-width: 100%;
+}
+
+
+
+/*----- end about page ----*/
 
 @media only screen and (min-width: 600px) {
     .text-page-description-container {

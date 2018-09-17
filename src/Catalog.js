@@ -22,7 +22,7 @@ class Catalog extends Component {
         routesToDisplay : allRoutes,
         markersToDisplay : allMarkers, 
         routeNamesToDisplay : [],
-        searchOnlyDisplayed: false,
+        searchInAllRoutesNotOnlyFiltered: false,
         layer: 'landscape',
         filterDistance:null,
         filterClimb:null,
@@ -61,7 +61,7 @@ class Catalog extends Component {
     // function called each time the user type in the search location panel, putting some latency as in the book tracking app, filtering the list of routes displayed conserving only the ones containing this part of word in one of their locations saved in their properties.locationsToSearch
     searchLocationsInRoutes = (query) => {
         
-        let isLookingInAllRoutesOrOnlyDisplayed = this.state.searchOnlyDisplayed;
+        let isLookingInAllRoutesOrOnlyDisplayed = this.state.searchInAllRoutesNotOnlyFiltered;
         
         const match = new RegExp(escapeRegExp(query), 'i')
         
@@ -70,7 +70,7 @@ class Catalog extends Component {
         let routesToMatchWith = [];
         
         // must make sure that when searchh only in displayed, recreate the list again filtering using the filters, buut startibng from the whole allRoutes and filtering on  top of that and THEN only matching the RegExp
-        this.state.searchOnlyDisplayed ? routesToMatchWith = allRoutes.filter( route => route.properties.climb <= this.state.filterClimb || this.state.filterClimb === null).filter( route =>  route.properties.distance <= this.state.filterDistance || this.state.filterDistance === null).filter( route =>  this.state[route.properties['route-type']] ) : routesToMatchWith = allRoutes;
+        this.state.searchInAllRoutesNotOnlyFiltered ? routesToMatchWith = allRoutes : routesToMatchWith = allRoutes.filter( route => route.properties.climb <= this.state.filterClimb || this.state.filterClimb === null).filter( route =>  route.properties.distance <= this.state.filterDistance || this.state.filterDistance === null).filter( route =>  this.state[route.properties['route-type']] ) ;
         
         let allRoutesFilteredBySearchTerm = routesToMatchWith.filter(route => match.test(route.properties.locationsToSearch) )
 
@@ -80,7 +80,21 @@ class Catalog extends Component {
         
 //      must make sure when routes hides then their markers hide too
         this.updateRouteNamesToDisplay(allRoutesFilteredBySearchTerm);
+    }
+    
+    
+    updateSearchInAll = (prevState) => {
         
+        this.setState({searchInAllRoutesNotOnlyFiltered : !prevState }) 
+        
+//        prevState ? 
+        
+        
+//        TODO: when click the checkbox updates directly the result list basedon this new state, not waiting for the user to modify its quyery and therefore calling the search function again
+        
+        const valueInSearchInput = document.getElementById('searchLocationInput').textContent;
+        
+        this.searchLocationsInRoutes(valueInSearchInput);
         
     }
 
@@ -155,6 +169,8 @@ class Catalog extends Component {
     clearFilters = () => {
         this.setState({routesToDisplay: allRoutes});
         this.updateRouteNamesToDisplay(allRoutes);
+        
+//        TODO: must clear the eventually filled search input field
     }
     
     render() {
@@ -169,6 +185,8 @@ class Catalog extends Component {
                     routesToDisplay = {this.state.routesToDisplay}
                     markersToDisplay = {this.state.markersToDisplay}
                     routeNamesToDisplay = {this.state.routeNamesToDisplay}
+                    searchInAllRoutesNotOnlyFiltered = {this.state.searchInAllRoutesNotOnlyFiltered}
+                    updateSearchInAll = {this.updateSearchInAll}
                     searchLocationsInRoutes = {this.searchLocationsInRoutes}
                     filterClimb = {this.state.filterClimb}
                     filterDistance = {this.state.filterDistance}
