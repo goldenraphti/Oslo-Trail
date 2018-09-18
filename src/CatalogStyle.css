@@ -50,11 +50,13 @@
 }
 
 form#catalog-panel {
+    width: 100vw;
+    position: absolute;
+    top: var(--navbar-height);
+    height: calc( 100vh - var(--navbar-height) );
     z-index: 500;
     right: 0px;
     bottom: 0px;
-    min-width: 350px;
-    height: calc( 100vh - var(--navbar-height) );
     overflow-y: scroll;
     opacity: 1;
     box-shadow: -7px 0 10px -10px var(--medium-grey);
@@ -71,6 +73,11 @@ form#catalog-panel {
     background: var(--medium-grey);
 */
 }
+
+form#catalog-panel .hidden {
+    display: none !important;
+}
+
 
 form#catalog-panel .form-section {
     margin: none;
@@ -100,6 +107,7 @@ form#catalog-panel h3 {
     justify-content: space-between;
     margin: 0;
     padding: 0;
+    width: 100%;
 }
 
 /*------- Tool Column -----*/
@@ -122,13 +130,13 @@ form#catalog-panel h3 {
 
 #open-tool-button {
     background-image: url(images/map-settings.svg);
-    box-shadow: 0 0 6px 0px var(--medium-grey);
-    position: absolute;
     border: solid 1px var(--medium-grey);
+    position: fixed;
+    top: var(--navbar-height);
 }
 
 #tool-icons-column {
-    position: absolute;
+    position: fixed;
     top: var(--navbar-height);
     right: 0;
     display: flex;
@@ -200,33 +208,34 @@ form#catalog-panel #clear-filters button:hover {
 
 /*    end Routes List   */
 
-/*    SEARCH FILTERS   */
+/*    SEARCH   */
 
 
 .search-books-bar {
-  width: 80%;
-  top: 0;
-  left: 0;
-  z-index: 5;
-  display: flex;
+    width: 80%;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
 }
 
 .search-books-bar .search-books-input-wrapper input {
-  width: 100%;
-  padding: 15px 10px;
-  font-size: 0.8em;
-  border: none;
-  outline: none;
+    width: 100%;
+    padding: 15px 10px;
+    font-size: 0.8em;
+    border: none;
+    outline: none;
     background: #fff;
 }
 
 .search-books-bar .search-books-input-wrapper input:focus {
-  width: 100%;
-  padding: 15px 10px;
-  font-size: 0.8em;
-  border: none;
+    width: 100%;
+    padding: 15px 10px;
+    font-size: 0.8em;
+    border: none;
     background: #fff;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 0 6px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 0 6px rgba(0,0,0,0.2);
 }
 
 #search-container .checkbox-div {
@@ -241,6 +250,20 @@ form#catalog-panel #clear-filters button:hover {
 }
 
 /* end search filter */
+
+/*    LAYERS   */
+
+#layers-radiobox-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkbox-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+/*    end Layers   */
 
 /*    FILTERS   */
 
@@ -280,10 +303,11 @@ form#catalog-panel #clear-filters button:hover {
     padding: 0;
 }
 
-.checkbox-div {
+#filters-container .checkbox-div {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: flex-start;
     margin: 0;
     padding: 0;
     font-size: 0.8em;
@@ -312,10 +336,18 @@ form#catalog-panel #clear-filters button:hover {
 
 
 
-/*
-@media only screen and (max-width: 1000px) {
-    .text-page-description-container {
-        width: 70vw;
+@media only screen and (min-width: 600px) {
+    
+    
+    #open-tool-button {
+        box-shadow: 0 0 6px 0px var(--medium-grey);
+        position: absolute;
+        top: 0;
+    }
+    
+    form#catalog-panel {
+        position:fixed;
+        width: 350px;
     }
 }
-*/
+

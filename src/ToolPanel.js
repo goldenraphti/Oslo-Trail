@@ -72,7 +72,7 @@ export default class ToolPanel extends Component {
                                    <input
                                       id="searchLocationInput"
                                        type='text'
-                                       placeholder='Search by start/finish location or spot to cross'
+                                       placeholder='Search by location'
                                        onChange={ (e) => this.props.searchLocationsInRoutes(e.target.value) }    
                                    />
                                     <div className="checkbox-div">
