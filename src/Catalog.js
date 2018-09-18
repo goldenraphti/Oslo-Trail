@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import Navbar from './Navbar'
 import MapUI from './MapUI';
+import ToolPanel from './ToolPanel';
 import Footer from './Footer'
 import escapeRegExp from 'escape-string-regexp'
 // using webpack json loader we can import our geojson file like this
@@ -181,29 +182,41 @@ class Catalog extends Component {
                     currentPage = 'catalog'
                  />
                
-                <MapUI
-                    routesToDisplay = {this.state.routesToDisplay}
-                    markersToDisplay = {this.state.markersToDisplay}
-                    routeNamesToDisplay = {this.state.routeNamesToDisplay}
-                    searchInAllRoutesNotOnlyFiltered = {this.state.searchInAllRoutesNotOnlyFiltered}
-                    updateSearchInAll = {this.updateSearchInAll}
-                    searchLocationsInRoutes = {this.searchLocationsInRoutes}
-                    filterClimb = {this.state.filterClimb}
-                    filterDistance = {this.state.filterDistance}
-                    loop = {this.state.loop}
-                    traversee = {this.state.traversee}
-                    layer = {this.state.layer}
-                    updateLayer = {this.updateLayer}
-                    updateFilters = {this.updateFilters}
-                    updateValMarker = {this.updateValMarker}
-                    markerStartFinish = {this.state.markerStartFinish}
-                    markerWater = {this.state.markerWater}
-                    markerWC = {this.state.markerWC}
-                    markerViewPoint = {this.state.markerViewPoint}
-                    selectRoute = {this.selectRoute}
-                    clearFilters = {this.clearFilters}
-                    selectedMapLayer = {this.state.selectedMapLayer}
-                />
+                <div id="map-form-container">
+                    <MapUI
+                        routesToDisplay = {this.state.routesToDisplay}
+                        markersToDisplay = {this.state.markersToDisplay}
+                        routeNamesToDisplay = {this.state.routeNamesToDisplay}
+                        layer = {this.state.layer}
+                        markerStartFinish = {this.state.markerStartFinish}
+                        markerWater = {this.state.markerWater}
+                        markerWC = {this.state.markerWC}
+                        markerViewPoint = {this.state.markerViewPoint}
+                    />
+                     <ToolPanel
+                        routesToDisplay = {this.state.routesToDisplay}
+                        markersToDisplay = {this.state.markersToDisplay}
+                        routeNamesToDisplay = {this.state.routeNamesToDisplay}
+                        searchInAllRoutesNotOnlyFiltered = {this.state.searchInAllRoutesNotOnlyFiltered}
+                        updateSearchInAll = {this.updateSearchInAll}
+                        searchLocationsInRoutes = {this.searchLocationsInRoutes}
+                        filterClimb = {this.state.filterClimb}
+                        filterDistance = {this.state.filterDistance}
+                        loop = {this.state.loop}
+                        traversee = {this.state.traversee}
+                        layer = {this.state.layer}
+                        updateLayer = {this.updateLayer}
+                        updateFilters = {this.updateFilters}
+                        updateValMarker = {this.updateValMarker}
+                        markerStartFinish = {this.state.markerStartFinish}
+                        markerWater = {this.state.markerWater}
+                        markerWC = {this.state.markerWC}
+                        markerViewPoint = {this.state.markerViewPoint}
+                        selectRoute = {this.selectRoute}
+                        clearFilters = {this.clearFilters}
+                        selectedMapLayer = {this.state.selectedMapLayer}
+                         />
+                </div>
                   
                   <Footer />
                 
