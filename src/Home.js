@@ -22,9 +22,9 @@ class Home extends Component {
                
                <div className="content">
                    <DescriptionHome />
+                   <Footer />
                </div>
                
-               <Footer />
                 
             </div>
 

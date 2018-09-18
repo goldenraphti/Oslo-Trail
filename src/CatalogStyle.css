@@ -1,7 +1,7 @@
 #map-container {
     text-align: center;
     width: 100%;
-    height: calc( 100vh - var(--navbar-height));
+    height: calc(100vh - var(--navbar-height));
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -340,7 +340,7 @@ form#catalog-panel #clear-filters button:hover {
     
     
     #open-tool-button {
-        box-shadow: 0 0 6px 0px var(--medium-grey);
+        box-shadow: 0 0 6px 0 var(--medium-grey);
         position: absolute;
         top: 0;
     }

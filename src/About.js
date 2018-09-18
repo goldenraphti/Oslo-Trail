@@ -18,9 +18,9 @@ class About extends Component {
                
                <div className="content">
                    <DescriptionAbout />
+                   <Footer />
                </div>
                
-               <Footer />
                 
             </div>
 
