@@ -157,19 +157,15 @@ a:visited {
 }
 
 .text-page-description-container h1 {
+    margin-top: 5vh;
     padding: 30px 0;
+    font-size: 3em;
+    line-height: 1em;
+    text-align: center;
 }
 
 .text-page-description-container p.text-intro {
     text-align: justify;
-}
-
-#description-home-container ul {
-   display: flex;
-   align-items: center;
-   justify-content:space-between;
-   flex-flow: row wrap;
-   align-content:flex-start;
 }
 
 .text-page-description-container li {
@@ -178,7 +174,7 @@ a:visited {
     align-items: center;
     justify-content: flex-end;
     cursor:auto;
-    max-width: 27vw;
+    max-width: 350px;
     margin: 10px 0;
 }
 
@@ -186,17 +182,6 @@ a:visited {
     min-width: 30px;
     max-width: 30px;
     margin-right: 20px;
-}
-
-.home-description-item-div h2{
-    margin: 0;
-    font-size: 0.9em;
-}
-
-.home-description-item-div p{
-    margin: 0;
-    color: var(--light-medium-grey);
-    font-size: 0.8em;
 }
 
 #catalog-container {
@@ -301,10 +286,10 @@ footer {
     position: absolute;
     z-index: 500;
     bottom: 0;
-    padding-bottom: 5px;
-    width: 50vw;
-    margin-left: 25vw;
-    margin-right: auto;
+    right: 10px;
+    padding: 5px;
+    margin-bottom: 10px;
+    text-align: right;
     color: var(--dark-grey);
     opacity: 1;
     text-shadow: 0px 0px 2px rgba(255, 255, 255, 1);
@@ -317,8 +302,37 @@ footer a:hover {
 
 /*    end Footer   */
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 650px) {
+    
     .text-page-description-container {
         width: 70vw;
     }
+
+    .text-page-description-container h1 {
+        padding: 30px 0;
+        font-size: 5em;
+    }
+
+/*
+    .text-page-description-container li {
+        max-width: 27vw;
+    }
+*/
+        
+    #catalog-container footer {
+        left: 10px;
+        margin-bottom: 0;
+        text-align: left;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    
+    #catalog-container footer {
+        width: 50vw;
+        margin-left: 25vw;
+        margin-right: auto;
+        text-align: center;
+    }
+    
 }

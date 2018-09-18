@@ -18,7 +18,11 @@ const DescriptionAbout = () => {
                            <ul>
                                <li><a href="https://reactjs.org/">React</a></li>
                                <li><a href="https://reacttraining.com/react-router/">React Router</a></li>
-                               <li><a href="https://thenounproject.com/">The nounproject icons</a> (<a href="https://thenounproject.com/bernar.novalyi/">Bernar Novalyi</a> , <a href="https://thenounproject.com/prosymbols/">ProSymbols</a>, <a href="https://thenounproject.com/yumminky/">Juraj Sedlák</a>, <a href="https://thenounproject.com/smashicons/">Ben Davis</a> )</li>
+                               <li><a href="https://thenounproject.com/">The nounproject icons</a></li>
+                                <li>(<a href="https://thenounproject.com/bernar.novalyi/">Bernar Novalyi</a>,</li>
+                                <li> <a href="https://thenounproject.com/prosymbols/">ProSymbols</a>,</li>
+                                <li> <a href="https://thenounproject.com/yumminky/">Juraj Sedlák</a>,</li>
+                                <li> <a href="https://thenounproject.com/smashicons/">Ben Davis</a> )</li>
                                <li><a href="https://leafletjs.com/">Leaflet</a></li>
                                <li><a href="https://react-leaflet.js.org/en/">React-leaflet</a></li>
                                <li><a href="https://www.thunderforest.com/">Thunderforest</a></li>

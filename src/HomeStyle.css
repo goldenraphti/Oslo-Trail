@@ -1,0 +1,19 @@
+
+#description-home-container ul {
+   display: flex;
+   align-items: center;
+   justify-content:space-around;
+   flex-flow: row wrap;
+   align-content:flex-start;
+}
+
+.home-description-item-div h2{
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.home-description-item-div p{
+    margin: 0;
+    color: var(--light-medium-grey);
+    font-size: 0.8em;
+}

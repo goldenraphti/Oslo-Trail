@@ -22,7 +22,7 @@
 #credits ul {
    display: flex;
    align-items: center;
-   justify-content: center;
+   justify-content: space-around;
    /* You can set flex-wrap and
       flex-direction individually */
    flex-direction: row;
@@ -41,6 +41,8 @@
 #credits li {
     margin: 0 10px;
     max-width: 100%;
+    font-size: 0.9em;
+    line-height: 2em;
 }
 
 #credits a {

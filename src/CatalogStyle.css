@@ -309,3 +309,13 @@ form#catalog-panel #clear-filters button:hover {
 /*    end Markers   */
 
 /*    end ToolPanel    */
+
+
+
+/*
+@media only screen and (max-width: 1000px) {
+    .text-page-description-container {
+        width: 70vw;
+    }
+}
+*/
