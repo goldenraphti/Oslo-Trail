@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="21.772312mm"
+   height="25.8125mm"
+   viewBox="0 0 21.772312 25.8125"
+   version="1.1"
+   id="svg1547"
+   inkscape:version="0.92.3 (d244b95, 2018-08-02)"
+   sodipodi:docname="map-pin-finish.svg"
+   inkscape:export-filename="/home/rf/Documents/Webdesign-2018/oslo-trail-klubb/graphic-resources/icons/map-pin-finish.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs1541">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2115">
+      <stop
+         style="stop-color:#f07b3f;stop-opacity:1"
+         offset="0"
+         id="stop2111" />
+      <stop
+         style="stop-color:#ea5455;stop-opacity:1"
+         offset="1"
+         id="stop2113" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2115"
+       id="linearGradient2117"
+       x1="87.394821"
+       y1="42.716061"
+       x2="12.643543"
+       y2="42.716061"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#cdcdcd"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="7.919596"
+     inkscape:cx="28.478635"
+     inkscape:cy="44.504366"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer4"
+     showgrid="false"
+     fit-margin-left="1"
+     fit-margin-right="1"
+     fit-margin-bottom="1"
+     fit-margin-top="1"
+     inkscape:window-width="1280"
+     inkscape:window-height="996"
+     inkscape:window-x="1366"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata1544">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Layer 3">
+    <path
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.08993058;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path870"
+       sodipodi:type="arc"
+       sodipodi:cx="10.853897"
+       sodipodi:cy="11.331481"
+       sodipodi:rx="6.617178"
+       sodipodi:ry="6.9621606"
+       sodipodi:start="0"
+       sodipodi:end="6.2831761"
+       d="m 17.471075,11.331481 a 6.617178,6.9621606 0 0 1 -6.617163,6.962161 6.617178,6.9621606 0 0 1 -6.6171929,-6.962129 6.617178,6.9621606 0 0 1 6.6171319,-6.9621926 6.617178,6.9621606 0 0 1 6.617224,6.9620966 l -6.617178,6.4e-5 z" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2">
+    <g
+       id="g2325"
+       transform="matrix(0.99562089,0,0,0.99562089,0.01987709,-0.44830467)">
+      <g
+         transform="matrix(0.27543893,0,0,0.27543893,0.72451663,2.2535686)"
+         id="g2194">
+        <g
+           transform="matrix(3.4622469,0,0,3.4622469,9.6691651e-8,8.9717088e-6)"
+           id="g2164">
+          <rect
+             x="6"
+             y="1"
+             width="2"
+             height="2"
+             id="rect2138" />
+          <rect
+             x="10"
+             y="1"
+             width="2"
+             height="2"
+             id="rect2140" />
+          <rect
+             x="4"
+             y="3"
+             width="2"
+             height="2"
+             id="rect2142" />
+          <rect
+             x="8"
+             y="3"
+             width="2"
+             height="2"
+             id="rect2144" />
+          <rect
+             x="12"
+             y="3"
+             width="2"
+             height="2"
+             id="rect2146" />
+          <rect
+             x="4"
+             y="7"
+             width="2"
+             height="2"
+             id="rect2148" />
+          <rect
+             x="8"
+             y="7"
+             width="2"
+             height="2"
+             id="rect2150" />
+          <rect
+             x="12"
+             y="7"
+             width="2"
+             height="2"
+             id="rect2152" />
+          <rect
+             x="14"
+             y="1"
+             width="2"
+             height="2"
+             id="rect2154" />
+          <rect
+             x="6"
+             y="5"
+             width="2"
+             height="2"
+             id="rect2158" />
+          <rect
+             x="10"
+             y="5"
+             width="2"
+             height="2"
+             id="rect2160" />
+          <rect
+             x="14"
+             y="5"
+             width="2"
+             height="2"
+             id="rect2162" />
+        </g>
+      </g>
+      <g
+         id="g2253"
+         transform="matrix(0.27543893,0,0,0.27543893,0.72451663,9.8826692)">
+        <g
+           id="g2251"
+           transform="matrix(3.4622469,0,0,3.4622469,9.6691651e-8,8.9717088e-6)">
+          <rect
+             id="rect2227"
+             height="2"
+             width="2"
+             y="1"
+             x="6" />
+          <rect
+             id="rect2229"
+             height="2"
+             width="2"
+             y="1"
+             x="10" />
+          <rect
+             id="rect2231"
+             height="2"
+             width="2"
+             y="3"
+             x="4" />
+          <rect
+             id="rect2233"
+             height="2"
+             width="2"
+             y="3"
+             x="8" />
+          <rect
+             id="rect2235"
+             height="2"
+             width="2"
+             y="3"
+             x="12" />
+          <rect
+             id="rect2237"
+             height="2"
+             width="2"
+             y="7"
+             x="4" />
+          <rect
+             id="rect2239"
+             height="2"
+             width="2"
+             y="7"
+             x="8" />
+          <rect
+             id="rect2241"
+             height="2"
+             width="2"
+             y="7"
+             x="12" />
+          <rect
+             id="rect2243"
+             height="2"
+             width="2"
+             y="1"
+             x="14" />
+          <rect
+             id="rect2245"
+             height="2"
+             width="2"
+             y="5"
+             x="6" />
+          <rect
+             id="rect2247"
+             height="2"
+             width="2"
+             y="5"
+             x="10" />
+          <rect
+             id="rect2249"
+             height="2"
+             width="2"
+             y="5"
+             x="14" />
+        </g>
+      </g>
+      <g
+         id="g2281"
+         transform="matrix(0.27543893,0,0,0.27543893,4.539067,6.0681189)">
+        <g
+           id="g2279"
+           transform="matrix(3.4622469,0,0,3.4622469,9.6691651e-8,8.9717088e-6)">
+          <rect
+             id="rect2255"
+             height="2"
+             width="2"
+             y="1"
+             x="6" />
+          <rect
+             id="rect2257"
+             height="2"
+             width="2"
+             y="1"
+             x="10" />
+          <rect
+             id="rect2259"
+             height="2"
+             width="2"
+             y="3"
+             x="4" />
+          <rect
+             id="rect2261"
+             height="2"
+             width="2"
+             y="3"
+             x="8" />
+          <rect
+             id="rect2263"
+             height="2"
+             width="2"
+             y="3"
+             x="12" />
+          <rect
+             id="rect2265"
+             height="2"
+             width="2"
+             y="7"
+             x="4" />
+          <rect
+             id="rect2267"
+             height="2"
+             width="2"
+             y="7"
+             x="8" />
+          <rect
+             id="rect2269"
+             height="2"
+             width="2"
+             y="7"
+             x="12" />
+          <rect
+             id="rect2271"
+             height="2"
+             width="2"
+             y="1"
+             x="14" />
+          <rect
+             id="rect2273"
+             height="2"
+             width="2"
+             y="5"
+             x="6" />
+          <rect
+             id="rect2275"
+             height="2"
+             width="2"
+             y="5"
+             x="10" />
+          <rect
+             id="rect2277"
+             height="2"
+             width="2"
+             y="5"
+             x="14" />
+        </g>
+      </g>
+    </g>
+  </g>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-80.732378,-65.202765)">
+    <g
+       style="stroke:#000000;stroke-opacity:1;stroke-width:0.37795276;stroke-miterlimit:4;stroke-dasharray:none"
+       id="g2109"
+       transform="matrix(0.26458333,0,0,0.26458333,78.389368,64.879848)">
+      <path
+         id="path2092"
+         d="M 50,5 C 29.364,5 12.635,21.729 12.635,42.365 c 0,11.504 5.2,21.791 13.376,28.646 L 50,95 73.989,71.011 C 82.165,64.157 87.365,53.869 87.365,42.365 87.365,21.729 70.637,5 50,5 Z m 0,62.258 c -13.101,0 -23.721,-10.62 -23.721,-23.721 0,-13.102 10.62,-23.721 23.721,-23.721 13.101,0 23.722,10.619 23.722,23.721 0,13.101 -10.621,23.721 -23.722,23.721 z"
+         inkscape:connector-curvature="0"
+         style="fill:url(#linearGradient2117);fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:0.37795276;stroke-miterlimit:4;stroke-dasharray:none"
+         sodipodi:insensitive="true" />
+    </g>
+  </g>
+</svg>
