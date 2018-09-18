@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
+import './CatalogStyle.css'
 import Navbar from './Navbar'
 import MapUI from './MapUI';
 import ToolPanel from './ToolPanel';

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
+import './AboutStyle.css'
 import './animated.css'
 import Navbar from './Navbar'
 import DescriptionAbout from './DescriptionAbout'
