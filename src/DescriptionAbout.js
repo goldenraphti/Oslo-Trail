@@ -7,7 +7,7 @@ const DescriptionAbout = () => {
               
                    <div id="description-about-container" className="text-page-description-container">
                        <h1 className="animated fadeIn" >About</h1>
-                       <p className="animated fadeInUp">This project was made by Raphaël Ferrand, in Oslo Norway.</p>
+                       <p className="animated fadeInUp">This project was made by <a href="mailto:rferrand@rferrand.com">Raphaël Ferrand</a>, in Oslo Norway.</p>
                        
                        <div id="credits">
                            <div id="credits-div">
